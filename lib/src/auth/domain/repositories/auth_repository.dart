@@ -1,9 +1,12 @@
+import 'package:dartz/dartz.dart';
+import 'package:studyhive/shared/error/failure.dart';
+
 import '../../../profile/domain/entities/profile.dart';
 
 abstract class AuthRepository {
-  Future<Profile> continueWithGoogle(Profile profile);
+  Future<Either<Failure, void>> continueWithGoogle(Profile profile);
 
-  Future<Profile> continueWithApple(Profile profile);
+  Future<Either<Failure, Profile>> continueWithApple(Profile profile);
 
-  Future<Profile> continueWithPhone(Profile profile);
+  Future<Either<Failure, Profile>> continueWithPhone(Profile profile);
 }
