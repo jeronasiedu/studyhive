@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>480976755846-vbej0t2b5kvbbh3vf047sfk4028hausd.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.480976755846-vbej0t2b5kvbbh3vf047sfk4028hausd</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCGZMjju3aukPvqzqPaBd6dEftlv0opWmU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>480976755846</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.jerondev.studyhive.studyhive</string>
+	<key>PROJECT_ID</key>
+	<string>studyhive-og</string>
+	<key>STORAGE_BUCKET</key>
+	<string>studyhive-og.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:480976755846:ios:1c8abd08c81a5382c40507</string>
+</dict>
+</plist>

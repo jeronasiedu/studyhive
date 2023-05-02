@@ -1,0 +1,41 @@
+name: studyhive
+description: Welcome to Study Hive! This app is designed to help students form study groups, organize their work and assignments, schedule meetings, and more. With Study Hive, you can collaborate with your peers and improve your academic performance
+
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.5 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  google_fonts:
+  flex_color_scheme: ^7.0.4
+  equatable:
+  get:
+  ionicons:
+  dartz:
+  url_launcher:
+  cached_network_image:
+  smooth_page_indicator:
+  iconly: ^1.0.1
+  google_sign_in:
+  firebase_core:
+  cloud_firestore:
+  firebase_auth:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.1
+
+flutter:
+  uses-material-design: true
+
+
+  assets:
+    - assets/
+

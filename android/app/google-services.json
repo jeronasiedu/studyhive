@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "480976755846",
+    "project_id": "studyhive-og",
+    "storage_bucket": "studyhive-og.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:480976755846:android:ef9886b15773dc76c40507",
+        "android_client_info": {
+          "package_name": "com.jerondev.studyhive.studyhive"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "480976755846-19gubt7v7ougktudgtcbd7dgsao1283t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA80i33kNWH1kJ59S6orqaH4Jhps9hTXhc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "480976755846-19gubt7v7ougktudgtcbd7dgsao1283t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
