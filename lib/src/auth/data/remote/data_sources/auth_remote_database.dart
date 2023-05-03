@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../../../profile/domain/entities/profile.dart';
 
-abstract class RemoteDatasourceRepository {
+abstract class AuthRemoteDatabase {
   Future<void> save(Profile profile);
 
   Future<Profile> retrieve(String id);
@@ -10,7 +10,7 @@ abstract class RemoteDatasourceRepository {
   Future<void> delete(String id);
 }
 
-class RemoteDatasourceRepositoryImpl implements RemoteDatasourceRepository {
+class AuthRemoteDatabaseImpl implements AuthRemoteDatabase {
   @override
   Future<void> save(Profile profile) async {
     await FirebaseFirestore.instance

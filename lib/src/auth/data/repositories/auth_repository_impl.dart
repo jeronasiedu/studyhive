@@ -2,14 +2,17 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:studyhive/shared/error/failure.dart';
-import 'package:studyhive/src/auth/data/remote/data_sources/auth_remote_data_source.dart';
+import 'package:studyhive/src/auth/data/remote/data_sources/auth_remote_database.dart';
 import 'package:studyhive/src/auth/domain/repositories/auth_repository.dart';
 import 'package:studyhive/src/profile/domain/entities/profile.dart';
 
-class AuthRepositoryImpl implements AuthRepository {
-  final RemoteDatasourceRepository remoteDatasource;
+import '../local/data_sources/auth_local_database.dart';
 
-  AuthRepositoryImpl({required this.remoteDatasource});
+class AuthRepositoryImpl implements AuthRepository {
+  final AuthRemoteDatabase remoteDatabase;
+  final AuthLocalDatabase localDatabase;
+
+  AuthRepositoryImpl({required this.remoteDatabase, required this.localDatabase});
 
   @override
   Future<Either<Failure, Profile>> continueWithApple(Profile profile) async {
@@ -33,8 +36,16 @@ class AuthRepositoryImpl implements AuthRepository {
 
       // Sign in with the credential
       UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
-      final results = await remoteDatasource.save(profile.copyWith(id: userCredential.user!.uid));
-      return Right(results);
+      final copiedProfile = profile.copyWith(
+        id: userCredential.user!.uid,
+        email: userCredential.user!.email!,
+        name: userCredential.user!.displayName!,
+        photoUrl: userCredential.user!.photoURL,
+      );
+      await remoteDatabase.save(copiedProfile);
+      await localDatabase.save(copiedProfile);
+
+      return const Right(null);
     } catch (error) {
       return Left(Failure(error.toString()));
     }

@@ -1,15 +1,37 @@
+import 'dart:async';
+
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studyhive/routes/app_pages.dart';
+import 'package:studyhive/services/init_services.dart';
 import 'package:studyhive/shared/theme/theme.dart';
+import 'package:studyhive/src/auth/data/local/data_sources/auth_local_database.dart';
 import 'package:studyhive/translations/translation.dart';
 
-void main() {
-  runApp(const MyApp());
+import 'firebase_options.dart';
+
+void main() async {
+  await initServices();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  final authDb = Get.find<AuthLocalDatabase>();
+  final bool isAuthenticated = await authDb.authStatus();
+  runZonedGuarded(
+      () => runApp(MyApp(
+            isAuthenticated: isAuthenticated,
+          )), (error, stack) {
+    print('runZonedGuarded: Caught error in my root zone.');
+    print(error);
+  });
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({super.key, required this.isAuthenticated});
+
+  final bool isAuthenticated;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +42,7 @@ class MyApp extends StatelessWidget {
       theme: lightTheme,
       darkTheme: darkTheme,
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.ONBOARDING,
+      initialRoute: isAuthenticated ? AppRoutes.HOME : AppRoutes.ONBOARDING,
       getPages: RouteGet.getPages,
     );
   }
