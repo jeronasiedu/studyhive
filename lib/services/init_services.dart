@@ -31,7 +31,7 @@ class RemoteDatabaseServices extends GetxService {
 
 class LocalDatabaseServices extends GetxService {
   Future<LocalDatabaseServices> init() async {
-    await GetStorage.init();
+    await GetStorage.init('profileBox');
     Get.put<AuthLocalDatabase>(AuthLocalDatabaseImpl());
     return this;
   }

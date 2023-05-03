@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iconly/iconly.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:studyhive/shared/extensions/buttons.dart';
 import 'package:studyhive/src/auth/presentation/manager/auth_controller.dart';
 
 class PhoneAuthPage extends GetView<AuthController> {
@@ -25,31 +27,46 @@ class PhoneAuthPage extends GetView<AuthController> {
                   textAlign: TextAlign.center,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 8.0, bottom: 40),
+                  padding: const EdgeInsets.only(top: 6.0, bottom: 40),
                   child: Text(
                     'send_verification_code'.tr,
                     style: Theme.of(context).textTheme.bodyMedium,
                     textAlign: TextAlign.center,
                   ),
                 ),
-                InternationalPhoneNumberInput(
-                  onInputChanged: (value) {},
-                  autoFocus: true,
-                  selectorConfig: const SelectorConfig(
-                    selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
-                    useEmoji: true,
-                  ),
-                  inputDecoration: InputDecoration(
-                    hintText: 'phone_number'.tr,
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+                Form(
+                  key: controller.formKey,
+                  child: InternationalPhoneNumberInput(
+                    autoValidateMode: AutovalidateMode.onUserInteraction,
+                    onInputValidated: (value) {},
+                    onInputChanged: controller.onPhoneNumberChanged,
+                    keyboardType: TextInputType.phone,
+                    formatInput: true,
+                    autoFocus: true,
+                    countries: const ['US', 'GB', 'GH', 'NG'],
+                    selectorConfig: const SelectorConfig(
+                      selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
+                      useEmoji: true,
+                    ),
+                    inputDecoration: InputDecoration(
+                      hintText: 'phone_number'.tr,
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+                    ),
                   ),
                 ),
                 const Spacer(),
                 SizedBox(
                   width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: Text('continue'.tr),
+                  child: GetBuilder<AuthController>(
+                    init: controller,
+                    builder: (controller) {
+                      return ElevatedButton.icon(
+                        onPressed: controller.enableContinueButton ? controller.submitPhoneNumber : null,
+                        label: Text('get_otp'.tr),
+                        icon: const Icon(IconlyBold.arrow_right),
+                      ).withLoading(
+                          loading: controller.gettingOtp, icon: const Icon(IconlyBold.arrow_right), text: 'get_otp'.tr);
+                    },
                   ),
                 ),
               ],

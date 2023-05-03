@@ -53,7 +53,12 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Either<Failure, Profile>> continueWithPhone(Profile profile) async {
-    // TODO: implement continueWithPhone
-    throw UnimplementedError();
+    try {
+      await remoteDatabase.save(profile);
+      await localDatabase.save(profile);
+      return Right(profile);
+    } catch (error) {
+      return Left(Failure(error.toString()));
+    }
   }
 }
