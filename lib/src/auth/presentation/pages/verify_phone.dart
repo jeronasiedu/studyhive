@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iconly/iconly.dart';
 import 'package:pinput/pinput.dart';
 import 'package:studyhive/shared/extensions/buttons.dart';
 
@@ -54,7 +55,7 @@ class VerifyPhone extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 6.0, bottom: 40),
+                  padding: const EdgeInsets.only(top: 6.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -73,6 +74,14 @@ class VerifyPhone extends StatelessWidget {
                       )
                     ],
                   ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 40),
+                  child: TextButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      child: Text("change_number".tr)),
                 ),
                 Pinput(
                   length: 6,
@@ -116,7 +125,7 @@ class VerifyPhone extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: GetBuilder<AuthController>(
-                    builder: (controller) => ElevatedButton(
+                    builder: (controller) => ElevatedButton.icon(
                       onPressed: controller.enableVerifyButton
                           ? () {
                               controller.verifyOtp(
@@ -124,9 +133,12 @@ class VerifyPhone extends StatelessWidget {
                               );
                             }
                           : null,
-                      child: Text('verify_and_proceed'.tr),
+                      label: Text('verify_and_proceed'.tr),
+                      icon: const Icon(IconlyBold.arrow_right),
                     ).withLoading(
                       loading: controller.isVerifying,
+                      icon: const Icon(IconlyBold.arrow_right),
+                      text: 'verifying'.tr,
                     ),
                   ),
                 ),

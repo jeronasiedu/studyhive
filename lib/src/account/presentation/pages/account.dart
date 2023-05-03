@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 
 import '../manager/profile_controller.dart';
 
-class ProfilePage extends GetView<ProfileController> {
-  const ProfilePage({Key? key}) : super(key: key);
+class AccountPage extends GetView<AccountController> {
+  const AccountPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

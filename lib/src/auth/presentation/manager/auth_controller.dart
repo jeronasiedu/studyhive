@@ -6,7 +6,7 @@ import 'package:pinput/pinput.dart';
 
 import '../../../../routes/app_pages.dart';
 import '../../../../shared/ui/snackbars.dart';
-import '../../../profile/domain/entities/profile.dart';
+import '../../../account/domain/entities/profile.dart';
 import '../../domain/repositories/auth_repository.dart';
 import '../pages/verify_phone.dart';
 
@@ -25,8 +25,6 @@ class AuthController extends GetxController {
 
   void onPhoneNumberChanged(PhoneNumber? value) {
     phoneNumber = value!.phoneNumber;
-    enableContinueButton = phoneNumber!.length > 12;
-    update();
   }
 
   void onOtpChanged(String value) {

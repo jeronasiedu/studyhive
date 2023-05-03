@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../../../profile/domain/entities/profile.dart';
+import '../../../../account/domain/entities/profile.dart';
 
 abstract class AuthRemoteDatabase {
   Future<void> save(Profile profile);

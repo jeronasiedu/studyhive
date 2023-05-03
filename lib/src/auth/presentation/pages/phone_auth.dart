@@ -37,19 +37,26 @@ class PhoneAuthPage extends GetView<AuthController> {
                 Form(
                   key: controller.formKey,
                   child: InternationalPhoneNumberInput(
-                    autoValidateMode: AutovalidateMode.onUserInteraction,
-                    onInputValidated: (value) {},
+                    onInputValidated: (value) {
+                      controller.enableContinueButton = value;
+                      controller.update();
+                    },
                     onInputChanged: controller.onPhoneNumberChanged,
                     keyboardType: TextInputType.phone,
+                    // spaceBetweenSelectorAndTextField: 0,
                     formatInput: true,
                     autoFocus: true,
-                    countries: const ['US', 'GB', 'GH', 'NG'],
+                    countries: const ['GH', 'GB', 'NG'],
                     selectorConfig: const SelectorConfig(
                       selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
                       useEmoji: true,
                     ),
                     inputDecoration: InputDecoration(
                       hintText: 'phone_number'.tr,
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+                    ),
+                    searchBoxDecoration: InputDecoration(
+                      hintText: 'search_country'.tr,
                       contentPadding: const EdgeInsets.symmetric(horizontal: 20),
                     ),
                   ),
@@ -65,7 +72,9 @@ class PhoneAuthPage extends GetView<AuthController> {
                         label: Text('get_otp'.tr),
                         icon: const Icon(IconlyBold.arrow_right),
                       ).withLoading(
-                          loading: controller.gettingOtp, icon: const Icon(IconlyBold.arrow_right), text: 'get_otp'.tr);
+                          loading: controller.gettingOtp,
+                          icon: const Icon(IconlyBold.arrow_right),
+                          text: 'sending_otp'.tr);
                     },
                   ),
                 ),

@@ -54,7 +54,7 @@ class HomePage extends GetView<HomeController> {
             NavigationDestination(
               selectedIcon: Icon(IconlyBold.user_2),
               icon: Icon(IconlyBroken.user_2),
-              label: 'Profile',
+              label: 'Account',
             ),
           ],
         );
