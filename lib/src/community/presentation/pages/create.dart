@@ -56,6 +56,7 @@ class CreateCommunityPage extends GetView<CreateCommunityController> {
               child: TextFormField(
                 autofocus: true,
                 decoration: const InputDecoration(
+                  contentPadding: EdgeInsets.symmetric(horizontal: 20),
                   labelText: "Community Name",
                   hintText: "Study Buddies",
                 ),
