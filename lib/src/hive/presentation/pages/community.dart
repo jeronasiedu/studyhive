@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../manager/community_controller.dart';
+import '../manager/hive_controller.dart';
 
-class CommunityPage extends GetView<CommunityController> {
+class CommunityPage extends GetView<HiveController> {
   const CommunityPage({Key? key}) : super(key: key);
 
   @override

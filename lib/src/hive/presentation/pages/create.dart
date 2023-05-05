@@ -5,7 +5,7 @@ import 'package:studyhive/shared/extensions/buttons.dart';
 
 import '../manager/create_controller.dart';
 
-class CreateCommunityPage extends GetView<CreateCommunityController> {
+class CreateCommunityPage extends GetView<CreateHiveController> {
   const CreateCommunityPage({Key? key}) : super(key: key);
 
   @override
@@ -41,10 +41,7 @@ class CreateCommunityPage extends GetView<CreateCommunityController> {
                     padding: const EdgeInsets.symmetric(vertical: 12.0),
                     child: CircleAvatar(
                       radius: 40,
-                      backgroundColor: Theme.of(context)
-                          .colorScheme
-                          .primaryContainer
-                          .withOpacity(0.3),
+                      backgroundColor: Theme.of(context).colorScheme.primaryContainer.withOpacity(0.3),
                       child: const Icon(IconlyBroken.image_2),
                     ),
                   ),

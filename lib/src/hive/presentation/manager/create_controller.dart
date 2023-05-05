@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CreateCommunityController extends GetxController {
+class CreateHiveController extends GetxController {
   late final TextEditingController nameController;
 
   RxBool loading = false.obs;
