@@ -10,7 +10,9 @@ showErrorSnackbar({required String message}) {
       message,
       backgroundColor: Get.theme.colorScheme.errorContainer,
       colorText: Get.theme.colorScheme.onErrorContainer,
-      icon: const Icon(Ionicons.warning_outline),
+      icon: const Icon(
+        Ionicons.warning_outline,
+      ),
     );
 }
 

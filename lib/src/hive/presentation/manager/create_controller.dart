@@ -1,29 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:studyhive/shared/ui/snackbars.dart';
+
+import '../../../../shared/utils/pick_image.dart';
 
 class CreateHiveController extends GetxController {
-  late final TextEditingController nameController;
-
+  final nameController = TextEditingController();
+  RxBool enableButton = false.obs;
   RxBool loading = false.obs;
-
-  set setLoading(bool value) {
-    loading.value = !value;
-    Future.delayed(
-      const Duration(seconds: 2),
-      () => loading.value = value,
-    );
-  }
+  RxString hiveProfile = ''.obs;
 
   @override
   void onInit() {
-    nameController = TextEditingController();
     super.onInit();
+    nameController.addListener(() {
+      enableButton.value = nameController.text.isNotEmpty;
+    });
   }
 
-  // on close
-  @override
-  void onClose() {
-    nameController.dispose();
-    super.onClose();
+  Future<void> chooseHiveProfile() async {
+    final pickedImage = await pickImage();
+    if (pickedImage != null) {
+      final croppedImage = await cropImage(imagePath: pickedImage.path, title: 'Choose Hive Profile');
+      if (croppedImage != null) {
+        hiveProfile.value = croppedImage.path;
+      }
+    } else {
+      showErrorSnackbar(message: "No image selected");
+    }
+  }
+
+  Future<void> create() async {
+    loading.value = true;
+    await Future.delayed(const Duration(seconds: 2));
+    loading.value = false;
+    Get.back();
   }
 }

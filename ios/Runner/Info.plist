@@ -60,5 +60,11 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+    <string>This app needs to access your camera to allow you to record videos and take photos for your profile. Without this permission, you won't be able to use these features.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+    <string>This app needs to access your photo library to allow you to update your profile picture and upload photos. Without this permission, you won't be able to use these features</string>
+	<key>NSMicrophoneUsageDescription</key>
+    <string>This app needs to access your microphone to allow you to record audio for your profile. Without this permission, you won't be able to use this feature</string>
 </dict>
 </plist>

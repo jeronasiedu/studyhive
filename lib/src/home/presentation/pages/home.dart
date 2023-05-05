@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
+import 'package:studyhive/routes/app_pages.dart';
 import 'package:studyhive/src/home/presentation/manager/home_controller.dart';
 
 class HomePage extends GetView<HomeController> {
@@ -14,11 +15,7 @@ class HomePage extends GetView<HomeController> {
           IconButton(
             splashRadius: 22,
             onPressed: () {},
-            icon: const Icon(IconlyLight.search),
-          ),
-          IconButton(
-            splashRadius: 22,
-            onPressed: () {},
+            tooltip: 'notifications'.tr,
             icon: const Icon(IconlyLight.notification),
           ),
           IconButton(
@@ -29,12 +26,20 @@ class HomePage extends GetView<HomeController> {
         ],
       ),
       body: ListView(
-        padding: const EdgeInsets.all(16),
-        children: const [],
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        children: List.generate(
+            10,
+            (index) => ListTile(
+                  onTap: () {},
+                  title: Text("Hive ${index + 1}"),
+                )),
       ),
       floatingActionButton: FloatingActionButton(
+        tooltip: 'create',
+        onPressed: () {
+          Get.toNamed(AppRoutes.createHive);
+        },
         child: const Icon(IconlyLight.plus),
-        onPressed: () {},
       ),
     );
   }

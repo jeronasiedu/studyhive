@@ -77,7 +77,7 @@ class AuthController extends GetxController {
       showErrorSnackbar(message: failure.message);
     }, (r) {
       isVerifying.value = false;
-      Get.offAllNamed(AppRoutes.HOME);
+      Get.offAllNamed(AppRoutes.home);
     });
   }
 

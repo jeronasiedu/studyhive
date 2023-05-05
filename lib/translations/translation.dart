@@ -26,6 +26,9 @@ class Localization extends Translations {
           "code_sent": "Code sent to @phoneNumber",
           "search_country": "Search by country name or dial code",
           'change_number': 'Not your number? Change it.',
+          'notifications': 'Notifications',
+          'settings': 'Settings',
+          'create_your_hive': 'Create Your Hive',
         },
       };
 }

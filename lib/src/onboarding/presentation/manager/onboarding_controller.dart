@@ -20,7 +20,7 @@ class OnboardingController extends GetxController {
       showErrorSnackbar(message: failure.message);
     }, (r) {
       loading.value = false;
-      Get.offAllNamed(AppRoutes.HOME);
+      Get.offAllNamed(AppRoutes.home);
     });
   }
 }

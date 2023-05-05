@@ -20,12 +20,25 @@ Profile _$ProfileFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Profile {
+  /// Unique ID of the user
   String get id => throw _privateConstructorUsedError;
+
+  /// Name of the user
   String get name => throw _privateConstructorUsedError;
+
+  /// Email of the user
   String get email => throw _privateConstructorUsedError;
+
+  /// Photo URL of the user
   String? get photoUrl => throw _privateConstructorUsedError;
+
+  /// Bio of the user
   String? get bio => throw _privateConstructorUsedError;
+
+  /// School of the user
   String? get school => throw _privateConstructorUsedError;
+
+  /// Phone number of the user
   String? get phoneNumber => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -185,18 +198,31 @@ class _$_Profile implements _Profile {
   factory _$_Profile.fromJson(Map<String, dynamic> json) =>
       _$$_ProfileFromJson(json);
 
+  /// Unique ID of the user
   @override
   final String id;
+
+  /// Name of the user
   @override
   final String name;
+
+  /// Email of the user
   @override
   final String email;
+
+  /// Photo URL of the user
   @override
   final String? photoUrl;
+
+  /// Bio of the user
   @override
   final String? bio;
+
+  /// School of the user
   @override
   final String? school;
+
+  /// Phone number of the user
   @override
   final String? phoneNumber;
 
@@ -253,18 +279,32 @@ abstract class _Profile implements Profile {
   factory _Profile.fromJson(Map<String, dynamic> json) = _$_Profile.fromJson;
 
   @override
+
+  /// Unique ID of the user
   String get id;
   @override
+
+  /// Name of the user
   String get name;
   @override
+
+  /// Email of the user
   String get email;
   @override
+
+  /// Photo URL of the user
   String? get photoUrl;
   @override
+
+  /// Bio of the user
   String? get bio;
   @override
+
+  /// School of the user
   String? get school;
   @override
+
+  /// Phone number of the user
   String? get phoneNumber;
   @override
   @JsonKey(ignore: true)

@@ -54,7 +54,7 @@ class OnboardingPage extends GetView<OnboardingController> {
                 width: double.infinity,
                 child: ElevatedButton.icon(
                   onPressed: () {
-                    Get.toNamed(AppRoutes.PHONE_AUTH);
+                    Get.toNamed(AppRoutes.phoneAuth);
                   },
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Theme.of(context).colorScheme.onSecondaryContainer,

@@ -42,8 +42,10 @@ class MyApp extends StatelessWidget {
       theme: lightTheme,
       darkTheme: darkTheme,
       debugShowCheckedModeBanner: false,
-      initialRoute: isAuthenticated ? AppRoutes.HOME : AppRoutes.ONBOARDING,
+      initialRoute: isAuthenticated ? AppRoutes.home : AppRoutes.onboarding,
       getPages: RouteGet.getPages,
     );
   }
 }
+
+//  flutter pub run build_runner build --delete-conflicting-outputs
