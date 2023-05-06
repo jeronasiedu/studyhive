@@ -15,7 +15,7 @@ class Spinner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double spinSize = 50;
+    double spinSize = 45;
     if (size == SpinnerSize.sm) {
       spinSize = 20;
     } else if (size == SpinnerSize.md) {
@@ -29,8 +29,8 @@ class Spinner extends StatelessWidget {
       child: Center(
         child: CircularProgressIndicator.adaptive(
           valueColor: AlwaysStoppedAnimation<Color>(color ?? Get.theme.colorScheme.primary),
-          strokeWidth: 2,
-          backgroundColor: Platform.isIOS ? Get.theme.colorScheme.secondary : Get.theme.colorScheme.primary,
+          strokeWidth: 2.5,
+          backgroundColor: Platform.isIOS ? Get.theme.colorScheme.secondary : null,
           value: null,
           semanticsLabel: 'Loading',
         ),

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:studyhive/routes/app_pages.dart';
 import 'package:studyhive/shared/ui/snackbars.dart';
 import 'package:studyhive/src/profile/domain/entities/profile.dart';
 import 'package:studyhive/src/profile/domain/use_cases/update.dart';
@@ -8,11 +9,13 @@ import 'package:studyhive/src/profile/domain/use_cases/update.dart';
 import '../../../../shared/usecase/usecase.dart';
 import '../../../../shared/utils/pick_image.dart';
 import '../../../../shared/utils/upload_image.dart';
+import '../../../auth/domain/repositories/auth_repository.dart';
 import '../../../profile/domain/use_cases/retrieve.dart';
 
 class SettingsController extends GetxController with StateMixin<Profile> {
   final retrieveProfileUseCase = Get.find<RetrieveProfile>();
   final updateProfileUseCase = Get.find<UpdateProfile>();
+  final authRepositoryUseCase = Get.find<AuthRepository>();
   Profile _profile = Profile.empty();
   RxBool uploading = false.obs;
 
@@ -64,5 +67,11 @@ class SettingsController extends GetxController with StateMixin<Profile> {
     _profile = _profile.copyWith(photoUrl: null);
     await _updateProfile(_profile);
     uploading.value = false;
+  }
+
+  Future<void> signOut() async {
+    final results = await authRepositoryUseCase.signOut();
+    results.fold(
+        (failure) => showErrorSnackbar(message: failure.message), (unit) => Get.offAllNamed(AppRoutes.onboarding));
   }
 }

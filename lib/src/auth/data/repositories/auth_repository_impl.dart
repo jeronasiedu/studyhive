@@ -58,7 +58,7 @@ class AuthRepositoryImpl implements AuthRepository {
       }
       return Right(userExists);
     } catch (error) {
-      return Left(Failure(error.toString()));
+      return const Left(Failure('Error signing in with Google'));
     }
   }
 
@@ -78,6 +78,20 @@ class AuthRepositoryImpl implements AuthRepository {
         await localDatabase.save(profile);
       }
       return Right(userExists);
+    } catch (error) {
+      return Left(Failure(error.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> signOut() async {
+    try {
+      if (!await networkInfo.hasInternet()) {
+        return const Left(Failure("No internet connection"));
+      }
+      await FirebaseAuth.instance.signOut();
+      await localDatabase.delete();
+      return const Right(null);
     } catch (error) {
       return Left(Failure(error.toString()));
     }

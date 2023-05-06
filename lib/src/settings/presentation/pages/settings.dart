@@ -25,8 +25,8 @@ class SettingsPage extends GetView<SettingsController> {
               ListTile(
                 onTap: () {
                   showCustomBottomSheet(
-                      hasHorizontalPadding: 0,
-                      height: profile.photoUrl != null ? Get.height * 0.25 : Get.height * 0.20,
+                      horizontalPadding: 0,
+                      height: profile.photoUrl != null ? Get.height * 0.25 : Get.height * 0.18,
                       child: Column(
                         children: [
                           ListTile(
@@ -81,7 +81,112 @@ class SettingsPage extends GetView<SettingsController> {
                         ),
                   ),
                 ),
-              )
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 20,
+                  left: 18,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "General",
+                      style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                    Divider(),
+                  ],
+                ),
+              ),
+              ListTile(
+                onTap: () {},
+                leading: CircleAvatar(
+                  backgroundColor: Theme.of(context).colorScheme.primaryContainer.withOpacity(0.3),
+                  child: const Icon(IconlyLight.filter),
+                ),
+                title: Text(
+                  "Theme",
+                  style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+                subtitle: const Text("Light mode"),
+                trailing: const Icon(IconlyLight.arrow_right_3),
+              ),
+              ListTile(
+                onTap: () {},
+                leading: CircleAvatar(
+                  backgroundColor: Theme.of(context).colorScheme.primaryContainer.withOpacity(0.3),
+                  child: const Icon(IconlyLight.lock),
+                ),
+                title: Text(
+                  "Privacy & Security",
+                  style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+                subtitle: const Text("Privacy, Security, Data"),
+                trailing: const Icon(IconlyLight.arrow_right_3),
+              ),
+              ListTile(
+                onTap: () {},
+                leading: CircleAvatar(
+                  backgroundColor: Theme.of(context).colorScheme.primaryContainer.withOpacity(0.3),
+                  child: const Icon(IconlyLight.heart),
+                ),
+                title: Text(
+                  "Invite a friend",
+                  style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+                subtitle: const Text("Share the app with your friends"),
+                trailing: const Icon(IconlyLight.arrow_right_3),
+              ),
+              ListTile(
+                onTap: () {
+                  showCustomBottomSheet(
+                      height: Get.height * 0.17,
+                      horizontalPadding: 0,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 8.0, left: 18),
+                            child: Text(
+                              "Are you sure you want to log out?",
+                              style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                            ),
+                          ),
+                          ListTile(
+                            onTap: () {
+                              Get.back();
+                              controller.signOut();
+                            },
+                            leading: const Icon(IconlyLight.logout),
+                            title: const Text("Log out"),
+                            trailing: const Icon(IconlyLight.arrow_right_3),
+                          ),
+                        ],
+                      ));
+                },
+                leading: CircleAvatar(
+                  backgroundColor: Theme.of(context).colorScheme.primaryContainer.withOpacity(0.3),
+                  child: const Icon(IconlyLight.logout),
+                ),
+                title: Text(
+                  "Log out",
+                  style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+                subtitle: const Text("Log out of your account"),
+                trailing: const Icon(IconlyLight.arrow_right_3),
+              ),
             ],
           );
         },

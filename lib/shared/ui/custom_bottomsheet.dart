@@ -6,7 +6,7 @@ showCustomBottomSheet({
   String? title,
   required Widget child,
   bool isScrollControlled = false,
-  double hasHorizontalPadding = 10,
+  double horizontalPadding = 10,
 }) {
   return Get.bottomSheet(
     SizedBox(
@@ -14,8 +14,8 @@ showCustomBottomSheet({
       child: Padding(
         padding: EdgeInsets.only(
           top: 6,
-          left: hasHorizontalPadding,
-          right: hasHorizontalPadding,
+          left: horizontalPadding,
+          right: horizontalPadding,
           bottom: 10,
         ),
         child: Column(
