@@ -1,29 +1,33 @@
 import 'package:get_storage/get_storage.dart';
 
-import '../../../../account/domain/entities/profile.dart';
+import '../../../domain/entities/profile.dart';
 
-abstract class AuthLocalDatabase {
+abstract class ProfileLocalDatabase {
+  /// Saves the [Profile] to the local database
   Future<void> save(Profile profile);
 
-  Future<Profile> retrieve(String id);
+  /// Returns the [Profile] from the local database
+  Future<Profile> retrieve();
 
-  Future<void> delete(String id);
+  /// Deletes the [Profile] from the local database
+  Future<void> delete();
 
+  /// Returns true if the user is authenticated
   Future<bool> authStatus();
 }
 
-class AuthLocalDatabaseImpl implements AuthLocalDatabase {
+class ProfileLocalDatabaseImpl implements ProfileLocalDatabase {
   final boxName = 'profileBox';
   final userKey = 'profileKey';
 
   @override
-  Future<void> delete(String id) async {
+  Future<void> delete() async {
     final box = GetStorage(boxName);
     await box.erase();
   }
 
   @override
-  Future<Profile> retrieve(String id) async {
+  Future<Profile> retrieve() async {
     final box = GetStorage(boxName);
     final userDetails = box.read(userKey);
     final user = userDetails != null ? Profile.fromJson(userDetails) : Profile.empty();

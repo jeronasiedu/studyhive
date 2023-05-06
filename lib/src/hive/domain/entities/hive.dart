@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:studyhive/src/account/domain/entities/profile.dart';
 import 'package:studyhive/src/hive/domain/entities/message.dart';
+
+import '../../../profile/domain/entities/profile.dart';
 
 part 'hive.freezed.dart';
 part 'hive.g.dart';
@@ -15,23 +16,23 @@ class Hive with _$Hive {
     required String name,
 
     /// Description of the Hive
-    required String description,
+    String? description,
 
     /// Photo URL of the Hive
     String? photoUrl,
 
     /// Members of the Hive
-    required List<Profile> members,
+    @Default([]) List<Profile> members,
 
     /// The ID of the user who created the Hive
     required String createdBy,
     // The date the Hive was created
-    required String createdAt,
+    required DateTime createdAt,
     // The date the Hive was last updated
-    required String updatedAt,
+    required DateTime updatedAt,
 
     /// conversations of the Hive
-    required List<Message> conversations,
+    @Default([]) List<Message> conversations,
   }) = _Hive;
 
   factory Hive.fromJson(Map<String, dynamic> json) => _$HiveFromJson(json);

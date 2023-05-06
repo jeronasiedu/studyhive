@@ -6,9 +6,9 @@ import 'package:get/get.dart';
 import 'package:studyhive/routes/app_pages.dart';
 import 'package:studyhive/services/init_services.dart';
 import 'package:studyhive/shared/theme/theme.dart';
-import 'package:studyhive/src/auth/data/local/data_sources/auth_local_database.dart';
 import 'package:studyhive/src/auth/presentation/manager/auth_binding.dart';
 import 'package:studyhive/src/home/presentation/manager/home_binding.dart';
+import 'package:studyhive/src/profile/data/local/data_sources/profile_local_database.dart';
 import 'package:studyhive/translations/translation.dart';
 
 import 'firebase_options.dart';
@@ -19,7 +19,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  final authDb = Get.find<AuthLocalDatabase>();
+  final authDb = Get.find<ProfileLocalDatabase>();
   final bool isAuthenticated = await authDb.authStatus();
   runZonedGuarded(
       () => runApp(MyApp(

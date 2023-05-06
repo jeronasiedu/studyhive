@@ -64,7 +64,8 @@ class HiveRepositoryImpl implements HiveRepository {
     try {
       final connected = await networkInfo.hasInternet();
       if (!connected) {
-        return const Left(Failure("No internet connection"));
+        final result = localDatabase.list();
+        return Right(result);
       }
       final result = remoteDatabase.list(userId);
       result.listen((hives) {

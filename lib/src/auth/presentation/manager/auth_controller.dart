@@ -6,7 +6,7 @@ import 'package:pinput/pinput.dart';
 
 import '../../../../routes/app_pages.dart';
 import '../../../../shared/ui/snackbars.dart';
-import '../../../account/domain/entities/profile.dart';
+import '../../../profile/domain/entities/profile.dart';
 import '../../domain/repositories/auth_repository.dart';
 import '../pages/verify_phone.dart';
 

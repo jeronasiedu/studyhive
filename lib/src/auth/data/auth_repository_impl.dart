@@ -2,15 +2,15 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:studyhive/shared/error/failure.dart';
-import 'package:studyhive/src/auth/data/remote/data_sources/auth_remote_database.dart';
 import 'package:studyhive/src/auth/domain/repositories/auth_repository.dart';
+import 'package:studyhive/src/profile/data/local/data_sources/profile_local_database.dart';
+import 'package:studyhive/src/profile/data/remote/data_sources/profile_remote_database.dart';
 
-import '../../../account/domain/entities/profile.dart';
-import '../local/data_sources/auth_local_database.dart';
+import '../../profile/domain/entities/profile.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
-  final AuthRemoteDatabase remoteDatabase;
-  final AuthLocalDatabase localDatabase;
+  final ProfileRemoteDatabase remoteDatabase;
+  final ProfileLocalDatabase localDatabase;
 
   AuthRepositoryImpl({required this.remoteDatabase, required this.localDatabase});
 

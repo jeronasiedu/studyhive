@@ -2,9 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
-Future<XFile?> pickImage({ImageSource source = ImageSource.gallery}) async {
+Future<XFile?> pickImage({
+  ImageSource source = ImageSource.gallery,
+  double? maxWidth,
+  double? maxHeight,
+  int? quality = 90,
+}) async {
   try {
-    final pickedImage = await ImagePicker().pickImage(source: source);
+    final pickedImage =
+        await ImagePicker().pickImage(source: source, maxWidth: maxWidth, maxHeight: maxHeight, imageQuality: quality);
     return pickedImage;
   } on Exception catch (e) {
     return null;

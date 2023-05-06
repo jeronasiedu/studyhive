@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:studyhive/shared/error/failure.dart';
 
-import '../../../account/domain/entities/profile.dart';
+import '../../../profile/domain/entities/profile.dart';
 
 abstract class AuthRepository {
   Future<Either<Failure, void>> continueWithGoogle(Profile profile);

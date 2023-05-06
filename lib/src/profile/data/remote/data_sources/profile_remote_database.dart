@@ -1,16 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../../../account/domain/entities/profile.dart';
+import '../../../domain/entities/profile.dart';
 
-abstract class AuthRemoteDatabase {
+abstract class ProfileRemoteDatabase {
+  /// Saves the [Profile] to the remote database
   Future<void> save(Profile profile);
 
+  /// Retrieves the [Profile] from the remote database
   Future<Profile> retrieve(String id);
 
+  /// Deletes the [Profile] from the remote database
   Future<void> delete(String id);
 }
 
-class AuthRemoteDatabaseImpl implements AuthRemoteDatabase {
+class ProfileRemoteDatabaseImpl implements ProfileRemoteDatabase {
   @override
   Future<void> save(Profile profile) async {
     await FirebaseFirestore.instance

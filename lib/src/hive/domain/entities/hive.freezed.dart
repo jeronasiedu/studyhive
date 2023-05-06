@@ -27,7 +27,7 @@ mixin _$Hive {
   String get name => throw _privateConstructorUsedError;
 
   /// Description of the Hive
-  String get description => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
 
   /// Photo URL of the Hive
   String? get photoUrl => throw _privateConstructorUsedError;
@@ -38,9 +38,9 @@ mixin _$Hive {
   /// The ID of the user who created the Hive
   String get createdBy =>
       throw _privateConstructorUsedError; // The date the Hive was created
-  String get createdAt =>
+  DateTime get createdAt =>
       throw _privateConstructorUsedError; // The date the Hive was last updated
-  String get updatedAt => throw _privateConstructorUsedError;
+  DateTime get updatedAt => throw _privateConstructorUsedError;
 
   /// conversations of the Hive
   List<Message> get conversations => throw _privateConstructorUsedError;
@@ -58,12 +58,12 @@ abstract class $HiveCopyWith<$Res> {
   $Res call(
       {String id,
       String name,
-      String description,
+      String? description,
       String? photoUrl,
       List<Profile> members,
       String createdBy,
-      String createdAt,
-      String updatedAt,
+      DateTime createdAt,
+      DateTime updatedAt,
       List<Message> conversations});
 }
 
@@ -82,7 +82,7 @@ class _$HiveCopyWithImpl<$Res, $Val extends Hive>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? description = null,
+    Object? description = freezed,
     Object? photoUrl = freezed,
     Object? members = null,
     Object? createdBy = null,
@@ -99,10 +99,10 @@ class _$HiveCopyWithImpl<$Res, $Val extends Hive>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       photoUrl: freezed == photoUrl
           ? _value.photoUrl
           : photoUrl // ignore: cast_nullable_to_non_nullable
@@ -118,11 +118,11 @@ class _$HiveCopyWithImpl<$Res, $Val extends Hive>
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
+              as DateTime,
       updatedAt: null == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String,
+              as DateTime,
       conversations: null == conversations
           ? _value.conversations
           : conversations // ignore: cast_nullable_to_non_nullable
@@ -140,12 +140,12 @@ abstract class _$$_HiveCopyWith<$Res> implements $HiveCopyWith<$Res> {
   $Res call(
       {String id,
       String name,
-      String description,
+      String? description,
       String? photoUrl,
       List<Profile> members,
       String createdBy,
-      String createdAt,
-      String updatedAt,
+      DateTime createdAt,
+      DateTime updatedAt,
       List<Message> conversations});
 }
 
@@ -160,7 +160,7 @@ class __$$_HiveCopyWithImpl<$Res> extends _$HiveCopyWithImpl<$Res, _$_Hive>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? description = null,
+    Object? description = freezed,
     Object? photoUrl = freezed,
     Object? members = null,
     Object? createdBy = null,
@@ -177,10 +177,10 @@ class __$$_HiveCopyWithImpl<$Res> extends _$HiveCopyWithImpl<$Res, _$_Hive>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       photoUrl: freezed == photoUrl
           ? _value.photoUrl
           : photoUrl // ignore: cast_nullable_to_non_nullable
@@ -196,11 +196,11 @@ class __$$_HiveCopyWithImpl<$Res> extends _$HiveCopyWithImpl<$Res, _$_Hive>
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as String,
+              as DateTime,
       updatedAt: null == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as String,
+              as DateTime,
       conversations: null == conversations
           ? _value.conversations
           : conversations // ignore: cast_nullable_to_non_nullable
@@ -215,13 +215,13 @@ class _$_Hive implements _Hive {
   const _$_Hive(
       {required this.id,
       required this.name,
-      required this.description,
+      this.description,
       this.photoUrl,
-      required this.members,
+      this.members = const [],
       required this.createdBy,
       required this.createdAt,
       required this.updatedAt,
-      required this.conversations});
+      this.conversations = const []});
 
   factory _$_Hive.fromJson(Map<String, dynamic> json) => _$$_HiveFromJson(json);
 
@@ -235,7 +235,7 @@ class _$_Hive implements _Hive {
 
   /// Description of the Hive
   @override
-  final String description;
+  final String? description;
 
   /// Photo URL of the Hive
   @override
@@ -243,6 +243,7 @@ class _$_Hive implements _Hive {
 
   /// Members of the Hive
   @override
+  @JsonKey()
   final List<Profile> members;
 
   /// The ID of the user who created the Hive
@@ -250,13 +251,14 @@ class _$_Hive implements _Hive {
   final String createdBy;
 // The date the Hive was created
   @override
-  final String createdAt;
+  final DateTime createdAt;
 // The date the Hive was last updated
   @override
-  final String updatedAt;
+  final DateTime updatedAt;
 
   /// conversations of the Hive
   @override
+  @JsonKey()
   final List<Message> conversations;
 
   @override
@@ -318,13 +320,13 @@ abstract class _Hive implements Hive {
   const factory _Hive(
       {required final String id,
       required final String name,
-      required final String description,
+      final String? description,
       final String? photoUrl,
-      required final List<Profile> members,
+      final List<Profile> members,
       required final String createdBy,
-      required final String createdAt,
-      required final String updatedAt,
-      required final List<Message> conversations}) = _$_Hive;
+      required final DateTime createdAt,
+      required final DateTime updatedAt,
+      final List<Message> conversations}) = _$_Hive;
 
   factory _Hive.fromJson(Map<String, dynamic> json) = _$_Hive.fromJson;
 
@@ -339,7 +341,7 @@ abstract class _Hive implements Hive {
   @override
 
   /// Description of the Hive
-  String get description;
+  String? get description;
   @override
 
   /// Photo URL of the Hive
@@ -353,9 +355,9 @@ abstract class _Hive implements Hive {
   /// The ID of the user who created the Hive
   String get createdBy;
   @override // The date the Hive was created
-  String get createdAt;
+  DateTime get createdAt;
   @override // The date the Hive was last updated
-  String get updatedAt;
+  DateTime get updatedAt;
   @override
 
   /// conversations of the Hive

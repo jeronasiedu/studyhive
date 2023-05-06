@@ -4,7 +4,7 @@ import '../../../domain/entities/hive.dart';
 
 abstract class HiveLocalDatabase {
   /// Returns a list of all the Hives
-  Future<List<Hive>> list();
+  Stream<List<Hive>> list();
 
   /// Saves a list of Hives
   Future<String> save(List<Hive> hives);
@@ -18,10 +18,11 @@ class HiveLocalDatabaseImpl implements HiveLocalDatabase {
   final hivesContainer = 'hives';
 
   @override
-  Future<List<Hive>> list() async {
+  Stream<List<Hive>> list() async* {
     final box = GetStorage(boxName);
     final hives = box.read(hivesContainer);
-    return hives != null ? List<Hive>.from(hives) : [];
+    final List<Hive> data = hives != null ? hives.map((hive) => Hive.fromJson(hive)).toList() : [];
+    yield data;
   }
 
   @override

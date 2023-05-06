@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../../../account/domain/entities/profile.dart';
+import '../../../../profile/domain/entities/profile.dart';
 import '../../../domain/entities/hive.dart';
 
 abstract class HiveRemoteDatabase {

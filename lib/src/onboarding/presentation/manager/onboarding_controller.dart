@@ -3,7 +3,7 @@ import 'package:studyhive/routes/app_pages.dart';
 import 'package:studyhive/shared/ui/snackbars.dart';
 import 'package:studyhive/src/auth/domain/repositories/auth_repository.dart';
 
-import '../../../account/domain/entities/profile.dart';
+import '../../../profile/domain/entities/profile.dart';
 
 class OnboardingController extends GetxController {
   final AuthRepository _authRepository;

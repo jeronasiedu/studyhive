@@ -9,9 +9,13 @@ abstract class UseCase<Type, Params> {
   Future<Either<Failure, Type>> call(Params params);
 }
 
-// create a generic params for usecases
-abstract class Params<T> {
-  const Params(this.value);
+/// create a generic params for usecases
+class Params<T> {
+  const Params(this.data);
 
-  final T value;
+  final T data;
+}
+
+class NoParams {
+  const NoParams();
 }
