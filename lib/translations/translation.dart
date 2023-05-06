@@ -31,6 +31,10 @@ class Localization extends Translations {
           'create_your_hive': 'Create Your Hive',
           'your_account': 'Your Account',
           'your_personal_account': 'Your personal account',
+          'what_is_your_name': 'What is your name?',
+          'full_name': 'Full Name',
+          'we_will_use_this_for_your_profile': 'We will use this for your profile',
+          'continue': 'Continue',
         },
       };
 }

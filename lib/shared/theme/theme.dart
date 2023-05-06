@@ -125,3 +125,5 @@ final darkTheme = FlexThemeData.dark(
   useMaterial3: true,
   fontFamily: GoogleFonts.openSans().fontFamily,
 );
+
+const inputPadding = EdgeInsets.symmetric(horizontal: 16, vertical: 12);
