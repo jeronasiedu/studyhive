@@ -27,12 +27,7 @@ class HomePage extends GetView<HomeController> {
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(vertical: 16),
-        children: List.generate(
-            10,
-            (index) => ListTile(
-                  onTap: () {},
-                  title: Text("Hive ${index + 1}"),
-                )),
+        children: [Text(controller.data)],
       ),
       floatingActionButton: FloatingActionButton(
         tooltip: 'create',

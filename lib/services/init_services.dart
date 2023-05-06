@@ -4,12 +4,14 @@ import 'package:studyhive/src/auth/data/remote/data_sources/auth_remote_database
 import 'package:studyhive/src/auth/data/repositories/auth_repository_impl.dart';
 import 'package:studyhive/src/auth/domain/repositories/auth_repository.dart';
 
+import '../shared/network/network.dart';
 import '../src/auth/data/local/data_sources/auth_local_database.dart';
 
 Future<void> initServices() async {
   await Get.putAsync(() => RemoteDatabaseServices().init());
   await Get.putAsync(() => LocalDatabaseServices().init());
   await Get.putAsync(() => RepositoryServices().init());
+  await Get.putAsync(() => NetworkServices().init());
 }
 
 class RepositoryServices extends GetxService {
@@ -32,7 +34,15 @@ class RemoteDatabaseServices extends GetxService {
 class LocalDatabaseServices extends GetxService {
   Future<LocalDatabaseServices> init() async {
     await GetStorage.init('profileBox');
+    await GetStorage.init('hiveBox');
     Get.put<AuthLocalDatabase>(AuthLocalDatabaseImpl());
+    return this;
+  }
+}
+
+class NetworkServices extends GetxService {
+  Future<NetworkServices> init() async {
+    Get.put<NetworkInfo>(NetworkInfoImpl());
     return this;
   }
 }

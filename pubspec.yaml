@@ -32,6 +32,7 @@ dependencies:
   pinput: ^2.2.31
   image_picker: ^0.8.7+4
   image_cropper: ^3.0.3
+  internet_connection_checker: ^1.0.0+1
 
 dev_dependencies:
   flutter_test:

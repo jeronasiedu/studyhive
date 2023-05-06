@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import '../error/exception.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 /// Checks for internet internet
 abstract class NetworkInfo {
@@ -13,15 +13,10 @@ class NetworkInfoImpl implements NetworkInfo {
   @override
   Future<bool> hasInternet() async {
     try {
-      final result = await InternetAddress.lookup('google.com');
-      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) return true;
-      throw DeviceException(
-          'No internet access\nConnect your device to the internet.',
-          statusCode: 500);
+      final results = await InternetConnectionChecker().hasConnection;
+      return results;
     } on SocketException catch (_) {
-      throw DeviceException(
-          'No internet access\nConnect your device to the internet.',
-          statusCode: 500);
+      return false;
     }
   }
 }

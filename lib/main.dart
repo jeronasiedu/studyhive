@@ -7,6 +7,8 @@ import 'package:studyhive/routes/app_pages.dart';
 import 'package:studyhive/services/init_services.dart';
 import 'package:studyhive/shared/theme/theme.dart';
 import 'package:studyhive/src/auth/data/local/data_sources/auth_local_database.dart';
+import 'package:studyhive/src/auth/presentation/manager/auth_binding.dart';
+import 'package:studyhive/src/home/presentation/manager/home_binding.dart';
 import 'package:studyhive/translations/translation.dart';
 
 import 'firebase_options.dart';
@@ -42,6 +44,7 @@ class MyApp extends StatelessWidget {
       theme: lightTheme,
       darkTheme: darkTheme,
       debugShowCheckedModeBanner: false,
+      initialBinding: isAuthenticated ? HomeBinding() : AuthBinding(),
       initialRoute: isAuthenticated ? AppRoutes.home : AppRoutes.onboarding,
       getPages: RouteGet.getPages,
     );
