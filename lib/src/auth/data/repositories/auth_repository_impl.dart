@@ -6,7 +6,7 @@ import 'package:studyhive/src/auth/domain/repositories/auth_repository.dart';
 import 'package:studyhive/src/profile/data/local/data_sources/profile_local_database.dart';
 import 'package:studyhive/src/profile/data/remote/data_sources/profile_remote_database.dart';
 
-import '../../profile/domain/entities/profile.dart';
+import '../../../profile/domain/entities/profile.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final ProfileRemoteDatabase remoteDatabase;
