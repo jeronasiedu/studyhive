@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
 
 class NoAvatar extends StatelessWidget {
@@ -7,6 +8,7 @@ class NoAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Stack(
       clipBehavior: Clip.none,
       children: [
@@ -22,11 +24,11 @@ class NoAvatar extends StatelessWidget {
             backgroundColor: Theme.of(context).colorScheme.background,
             child: CircleAvatar(
               radius: 9,
-              backgroundColor: Theme.of(context).colorScheme.tertiary,
-              child: const Icon(
+              backgroundColor: Get.isDarkMode ? theme.colorScheme.secondary : theme.colorScheme.tertiary,
+              child: Icon(
                 Ionicons.camera_outline,
+                color: theme.colorScheme.background,
                 size: 13,
-                color: Colors.white,
               ),
             ),
           ),

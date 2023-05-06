@@ -11,6 +11,13 @@ class HomePage extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          splashRadius: 22,
+          onPressed: () {
+            Get.toNamed(AppRoutes.settings);
+          },
+          icon: const Icon(IconlyLight.setting),
+        ),
         actions: [
           IconButton(
             splashRadius: 22,
@@ -18,18 +25,11 @@ class HomePage extends GetView<HomeController> {
             tooltip: 'notifications'.tr,
             icon: const Icon(IconlyLight.notification),
           ),
-          IconButton(
-            splashRadius: 22,
-            onPressed: () {
-              Get.toNamed(AppRoutes.settings);
-            },
-            icon: const Icon(IconlyLight.setting),
-          )
         ],
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(vertical: 16),
-        children: [Text(controller.data)],
+        children: [],
       ),
       floatingActionButton: FloatingActionButton(
         tooltip: 'create',
