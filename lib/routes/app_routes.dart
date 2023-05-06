@@ -6,4 +6,5 @@ abstract class AppRoutes {
   static const phoneAuth = '/phoneAuth';
   static const createHive = '/createHive';
   static const settings = '/settings';
+  static const setupProfile = '/setupProfile';
 }

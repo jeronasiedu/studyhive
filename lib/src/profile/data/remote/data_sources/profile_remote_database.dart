@@ -14,6 +14,9 @@ abstract class ProfileRemoteDatabase {
 
   /// Updates the [Profile] to the remote database
   Future<Profile> update(Profile profile);
+
+  /// Checks if the [Profile] exists in the remote database
+  Future<bool> exists(String id);
 }
 
 class ProfileRemoteDatabaseImpl implements ProfileRemoteDatabase {
@@ -43,5 +46,11 @@ class ProfileRemoteDatabaseImpl implements ProfileRemoteDatabase {
         .doc(profile.id)
         .set(profile.toJson(), SetOptions(merge: true));
     return profile;
+  }
+
+  @override
+  Future<bool> exists(String id) async {
+    final results = await FirebaseFirestore.instance.collection('profiles').doc(id).get();
+    return results.exists;
   }
 }

@@ -75,9 +75,13 @@ class AuthController extends GetxController {
     results.fold((failure) {
       isVerifying.value = false;
       showErrorSnackbar(message: failure.message);
-    }, (r) {
+    }, (exists) {
       isVerifying.value = false;
-      Get.offAllNamed(AppRoutes.home);
+      if (exists) {
+        Get.offAllNamed(AppRoutes.home);
+      } else {
+        Get.offAllNamed(AppRoutes.setupProfile);
+      }
     });
   }
 

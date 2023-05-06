@@ -24,7 +24,7 @@ class VerifyPhone extends StatelessWidget {
             fontSize: 22,
           ),
       decoration: BoxDecoration(
-        border: Border.all(color: Color.fromRGBO(234, 239, 243, 1)),
+        border: Border.all(color: const Color.fromRGBO(234, 239, 243, 1)),
         borderRadius: BorderRadius.circular(6),
       ),
     );

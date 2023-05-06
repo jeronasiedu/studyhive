@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:studyhive/shared/network/network.dart';
 
 import '../../../profile/data/local/data_sources/profile_local_database.dart';
 import '../../../profile/data/remote/data_sources/profile_remote_database.dart';
@@ -10,6 +11,7 @@ class AuthService extends GetxService {
     Get.put<AuthRepository>(AuthRepositoryImpl(
       remoteDatabase: Get.find<ProfileRemoteDatabase>(),
       localDatabase: Get.find<ProfileLocalDatabase>(),
+      networkInfo: Get.find<NetworkInfo>(),
     ));
     return this;
   }

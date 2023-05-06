@@ -14,6 +14,9 @@ abstract class ProfileLocalDatabase {
 
   /// Returns true if the user is authenticated
   Future<bool> authStatus();
+
+  /// Checks if the user finished the setup process
+  Future<bool> finishedSetup();
 }
 
 class ProfileLocalDatabaseImpl implements ProfileLocalDatabase {
@@ -45,5 +48,11 @@ class ProfileLocalDatabaseImpl implements ProfileLocalDatabase {
     final box = GetStorage(boxName);
     final user = box.read(userKey);
     return Future.value(user != null);
+  }
+
+  @override
+  Future<bool> finishedSetup() async {
+    final userDetails = await retrieve();
+    return userDetails.name.isNotEmpty;
   }
 }

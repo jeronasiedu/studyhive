@@ -4,9 +4,9 @@ import 'package:studyhive/shared/error/failure.dart';
 import '../../../profile/domain/entities/profile.dart';
 
 abstract class AuthRepository {
-  Future<Either<Failure, void>> continueWithGoogle(Profile profile);
+  Future<Either<Failure, bool>> continueWithGoogle(Profile profile);
 
-  Future<Either<Failure, Profile>> continueWithApple(Profile profile);
+  Future<Either<Failure, bool>> continueWithApple(Profile profile);
 
-  Future<Either<Failure, Profile>> continueWithPhone(Profile profile);
+  Future<Either<Failure, bool>> continueWithPhone(Profile profile);
 }

@@ -6,24 +6,30 @@ import 'package:studyhive/src/auth/domain/repositories/auth_repository.dart';
 import 'package:studyhive/src/profile/data/local/data_sources/profile_local_database.dart';
 import 'package:studyhive/src/profile/data/remote/data_sources/profile_remote_database.dart';
 
+import '../../../../shared/network/network.dart';
 import '../../../profile/domain/entities/profile.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final ProfileRemoteDatabase remoteDatabase;
   final ProfileLocalDatabase localDatabase;
+  final NetworkInfo networkInfo;
 
-  AuthRepositoryImpl({required this.remoteDatabase, required this.localDatabase});
+  AuthRepositoryImpl({required this.remoteDatabase, required this.localDatabase, required this.networkInfo});
 
   @override
-  Future<Either<Failure, Profile>> continueWithApple(Profile profile) async {
+  Future<Either<Failure, bool>> continueWithApple(Profile profile) async {
     // TODO: implement continueWithApple
     throw UnimplementedError();
   }
 
   @override
-  Future<Either<Failure, void>> continueWithGoogle(Profile profile) async {
+  Future<Either<Failure, bool>> continueWithGoogle(Profile profile) async {
     // create an account with
     try {
+      if (!await networkInfo.hasInternet()) {
+        return const Left(Failure("No internet connection"));
+      }
+
       GoogleSignInAccount? googleSignInAccount = await GoogleSignIn().signIn();
       // Get the GoogleSignInAuthentication
       GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount!.authentication;
@@ -42,21 +48,36 @@ class AuthRepositoryImpl implements AuthRepository {
         name: userCredential.user!.displayName!,
         photoUrl: userCredential.user!.photoURL,
       );
-      await remoteDatabase.save(copiedProfile);
-      await localDatabase.save(copiedProfile);
-
-      return const Right(null);
+      final userExists = await remoteDatabase.exists(copiedProfile.id);
+      if (userExists) {
+        final appUser = await remoteDatabase.retrieve(copiedProfile.id);
+        await localDatabase.save(appUser);
+      } else {
+        await remoteDatabase.save(copiedProfile);
+        await localDatabase.save(copiedProfile);
+      }
+      return Right(userExists);
     } catch (error) {
       return Left(Failure(error.toString()));
     }
   }
 
   @override
-  Future<Either<Failure, Profile>> continueWithPhone(Profile profile) async {
+  Future<Either<Failure, bool>> continueWithPhone(Profile profile) async {
     try {
-      await remoteDatabase.save(profile);
-      await localDatabase.save(profile);
-      return Right(profile);
+      if (!await networkInfo.hasInternet()) {
+        return const Left(Failure("No internet connection"));
+      }
+
+      final userExists = await remoteDatabase.exists(profile.id);
+      if (userExists) {
+        final appUser = await remoteDatabase.retrieve(profile.id);
+        await localDatabase.save(appUser);
+      } else {
+        await remoteDatabase.save(profile);
+        await localDatabase.save(profile);
+      }
+      return Right(userExists);
     } catch (error) {
       return Left(Failure(error.toString()));
     }

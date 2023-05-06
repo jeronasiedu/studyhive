@@ -19,11 +19,14 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  final authDb = Get.find<ProfileLocalDatabase>();
-  final bool isAuthenticated = await authDb.authStatus();
+  final profileLocalDb = Get.find<ProfileLocalDatabase>();
+  final bool isAuthenticated = await profileLocalDb.authStatus();
+  final bool isProfileSetup = await profileLocalDb.finishedSetup();
+
   runZonedGuarded(
       () => runApp(MyApp(
             isAuthenticated: isAuthenticated,
+            isProfileSetup: isProfileSetup,
           )), (error, stack) {
     print('runZonedGuarded: Caught error in my root zone.');
     print(error);
@@ -31,9 +34,22 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key, required this.isAuthenticated});
+  const MyApp({super.key, required this.isAuthenticated, required this.isProfileSetup});
 
   final bool isAuthenticated;
+  final bool isProfileSetup;
+
+  String get initialRoute {
+    if (isAuthenticated) {
+      if (isProfileSetup) {
+        return AppRoutes.home;
+      } else {
+        return AppRoutes.setupProfile;
+      }
+    } else {
+      return AppRoutes.onboarding;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +61,7 @@ class MyApp extends StatelessWidget {
       darkTheme: darkTheme,
       debugShowCheckedModeBanner: false,
       initialBinding: isAuthenticated ? HomeBinding() : AuthBinding(),
-      initialRoute: isAuthenticated ? AppRoutes.home : AppRoutes.onboarding,
+      initialRoute: initialRoute,
       getPages: RouteGet.getPages,
     );
   }

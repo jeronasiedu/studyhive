@@ -18,9 +18,13 @@ class OnboardingController extends GetxController {
     results.fold((failure) {
       loading.value = false;
       showErrorSnackbar(message: failure.message);
-    }, (r) {
+    }, (exists) {
       loading.value = false;
-      Get.offAllNamed(AppRoutes.home);
+      if (exists) {
+        Get.offAllNamed(AppRoutes.home);
+      } else {
+        Get.offAllNamed(AppRoutes.setupProfile);
+      }
     });
   }
 }
