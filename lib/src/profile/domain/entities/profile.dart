@@ -13,7 +13,7 @@ class Profile with _$Profile {
     required String name,
 
     /// Email of the user
-    required String email,
+    String? email,
 
     /// Photo URL of the user
     String? photoUrl,
@@ -33,6 +33,5 @@ class Profile with _$Profile {
   factory Profile.empty() => const Profile(
         id: '',
         name: '',
-        email: '',
       );
 }

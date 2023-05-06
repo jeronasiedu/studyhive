@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:studyhive/src/profile/domain/use_cases/update.dart';
 
 import '../../../../shared/network/network.dart';
 import '../../domain/repositories/profile_repository.dart';
@@ -17,6 +18,7 @@ class ProfileService extends GetxService {
       networkInfo: Get.find<NetworkInfo>(),
     ));
     Get.put<RetrieveProfile>(RetrieveProfile(Get.find<ProfileRepository>()));
+    Get.put<UpdateProfile>(UpdateProfile(Get.find<ProfileRepository>()));
     return this;
   }
 }

@@ -5,4 +5,5 @@ abstract class AppRoutes {
   static const home = '/home';
   static const phoneAuth = '/phoneAuth';
   static const createHive = '/createHive';
+  static const settings = '/settings';
 }

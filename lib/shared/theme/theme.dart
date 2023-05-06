@@ -65,7 +65,7 @@ final lightTheme = FlexThemeData.light(
   tones: FlexTones.oneHue(Brightness.light),
   visualDensity: FlexColorScheme.comfortablePlatformDensity,
   useMaterial3: true,
-  fontFamily: GoogleFonts.openSans().fontFamily,
+  fontFamily: GoogleFonts.inter().fontFamily,
 );
 final darkTheme = FlexThemeData.dark(
   scheme: FlexScheme.cyanM3,

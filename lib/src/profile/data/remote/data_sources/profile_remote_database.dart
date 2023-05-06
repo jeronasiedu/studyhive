@@ -11,6 +11,9 @@ abstract class ProfileRemoteDatabase {
 
   /// Deletes the [Profile] from the remote database
   Future<void> delete(String id);
+
+  /// Updates the [Profile] to the remote database
+  Future<Profile> update(Profile profile);
 }
 
 class ProfileRemoteDatabaseImpl implements ProfileRemoteDatabase {
@@ -31,5 +34,14 @@ class ProfileRemoteDatabaseImpl implements ProfileRemoteDatabase {
   @override
   Future<void> delete(String id) async {
     await FirebaseFirestore.instance.collection('profiles').doc(id).delete();
+  }
+
+  @override
+  Future<Profile> update(Profile profile) async {
+    await FirebaseFirestore.instance
+        .collection('profiles')
+        .doc(profile.id)
+        .set(profile.toJson(), SetOptions(merge: true));
+    return profile;
   }
 }

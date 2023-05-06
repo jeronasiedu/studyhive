@@ -11,4 +11,7 @@ abstract class ProfileRepository {
 
   /// Deletes the [Profile] from the local and remote database
   Future<Either<Failure, void>> delete(String userId);
+
+  /// Updates the [Profile] to the local and remote database
+  Future<Either<Failure, Profile>> update(Profile profile);
 }

@@ -20,7 +20,9 @@ class HomePage extends GetView<HomeController> {
           ),
           IconButton(
             splashRadius: 22,
-            onPressed: () {},
+            onPressed: () {
+              Get.toNamed(AppRoutes.settings);
+            },
             icon: const Icon(IconlyLight.setting),
           )
         ],

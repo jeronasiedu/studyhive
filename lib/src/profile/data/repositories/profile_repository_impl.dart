@@ -50,11 +50,28 @@ class ProfileRepositoryImpl implements ProfileRepository {
   @override
   Future<Either<Failure, void>> delete(String userId) async {
     try {
+      if (!await networkInfo.hasInternet()) {
+        return const Left(Failure('No internet connection'));
+      }
       await localDatabase.delete();
       await remoteDatabase.delete(userId);
       return const Right(null);
     } on Exception {
       return const Left(Failure('Error deleting profile'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, Profile>> update(Profile profile) async {
+    try {
+      if (!await networkInfo.hasInternet()) {
+        return const Left(Failure('No internet connection'));
+      }
+      await localDatabase.save(profile);
+      final results = await remoteDatabase.update(profile);
+      return Right(results);
+    } on Exception {
+      return const Left(Failure('Error updating profile'));
     }
   }
 }

@@ -27,7 +27,7 @@ mixin _$Profile {
   String get name => throw _privateConstructorUsedError;
 
   /// Email of the user
-  String get email => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
 
   /// Photo URL of the user
   String? get photoUrl => throw _privateConstructorUsedError;
@@ -54,7 +54,7 @@ abstract class $ProfileCopyWith<$Res> {
   $Res call(
       {String id,
       String name,
-      String email,
+      String? email,
       String? photoUrl,
       String? bio,
       String? school,
@@ -76,7 +76,7 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? email = null,
+    Object? email = freezed,
     Object? photoUrl = freezed,
     Object? bio = freezed,
     Object? school = freezed,
@@ -91,10 +91,10 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      email: null == email
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       photoUrl: freezed == photoUrl
           ? _value.photoUrl
           : photoUrl // ignore: cast_nullable_to_non_nullable
@@ -125,7 +125,7 @@ abstract class _$$_ProfileCopyWith<$Res> implements $ProfileCopyWith<$Res> {
   $Res call(
       {String id,
       String name,
-      String email,
+      String? email,
       String? photoUrl,
       String? bio,
       String? school,
@@ -144,7 +144,7 @@ class __$$_ProfileCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? email = null,
+    Object? email = freezed,
     Object? photoUrl = freezed,
     Object? bio = freezed,
     Object? school = freezed,
@@ -159,10 +159,10 @@ class __$$_ProfileCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      email: null == email
+      email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       photoUrl: freezed == photoUrl
           ? _value.photoUrl
           : photoUrl // ignore: cast_nullable_to_non_nullable
@@ -189,7 +189,7 @@ class _$_Profile implements _Profile {
   const _$_Profile(
       {required this.id,
       required this.name,
-      required this.email,
+      this.email,
       this.photoUrl,
       this.bio,
       this.school,
@@ -208,7 +208,7 @@ class _$_Profile implements _Profile {
 
   /// Email of the user
   @override
-  final String email;
+  final String? email;
 
   /// Photo URL of the user
   @override
@@ -270,7 +270,7 @@ abstract class _Profile implements Profile {
   const factory _Profile(
       {required final String id,
       required final String name,
-      required final String email,
+      final String? email,
       final String? photoUrl,
       final String? bio,
       final String? school,
@@ -289,7 +289,7 @@ abstract class _Profile implements Profile {
   @override
 
   /// Email of the user
-  String get email;
+  String? get email;
   @override
 
   /// Photo URL of the user

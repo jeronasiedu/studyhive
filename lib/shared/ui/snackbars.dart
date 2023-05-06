@@ -21,9 +21,7 @@ showErrorSnackbar({required String message}) {
           Color(0xFFEF5350),
         ],
       ),
-      icon: const Icon(
-        Ionicons.warning_outline,
-      ),
+      icon: const Icon(Ionicons.warning_outline),
     );
 }
 
@@ -36,5 +34,22 @@ showSuccessSnackbar({required String message}) {
       backgroundColor: Get.theme.colorScheme.primaryContainer,
       colorText: Get.theme.colorScheme.onPrimaryContainer,
       icon: const Icon(Ionicons.checkmark_circle_outline),
+      shouldIconPulse: true,
+    );
+}
+
+showLoadingSnackbar({required String message, bool isPersistent = false, title = "Loading"}) {
+  return Get
+    ..closeAllSnackbars()
+    ..snackbar(
+      title,
+      message,
+      backgroundColor: Get.theme.colorScheme.primaryContainer,
+      colorText: Get.theme.colorScheme.onPrimaryContainer,
+      showProgressIndicator: true,
+      icon: const Icon(Ionicons.cloud_upload_outline),
+      duration: isPersistent ? const Duration(days: 365) : const Duration(seconds: 5),
+      isDismissible: !isPersistent,
+      shouldIconPulse: true,
     );
 }

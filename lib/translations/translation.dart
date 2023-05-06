@@ -29,6 +29,8 @@ class Localization extends Translations {
           'notifications': 'Notifications',
           'settings': 'Settings',
           'create_your_hive': 'Create Your Hive',
+          'your_account': 'Your Account',
+          'your_personal_account': 'Your personal account',
         },
       };
 }
