@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:studyhive/routes/app_pages.dart';
 import 'package:studyhive/shared/extensions/strings.dart';
 import 'package:studyhive/shared/ui/custom_bottomsheet.dart';
+import 'package:studyhive/shared/ui/custom_listtile.dart';
 import 'package:studyhive/shared/ui/spinner.dart';
 import 'package:studyhive/src/settings/presentation/manager/settings_controller.dart';
 import 'package:studyhive/src/settings/presentation/widgets/no_avatar.dart';
@@ -35,7 +37,7 @@ class SettingsPage extends GetView<SettingsController> {
                               controller.chooseProfile(ImageSource.camera);
                             },
                             leading: const Icon(IconlyLight.camera),
-                            title: const Text("Take a photo"),
+                            title: Text("take_a_photo".tr),
                           ),
                           ListTile(
                             onTap: () {
@@ -43,7 +45,7 @@ class SettingsPage extends GetView<SettingsController> {
                               controller.chooseProfile(ImageSource.gallery);
                             },
                             leading: const Icon(IconlyLight.image),
-                            title: const Text("Choose from gallery"),
+                            title: Text("choose_from_gallery".tr),
                           ),
                           if (profile.photoUrl != null)
                             ListTile(
@@ -52,7 +54,7 @@ class SettingsPage extends GetView<SettingsController> {
                                 controller.deleteProfile();
                               },
                               leading: const Icon(IconlyLight.delete),
-                              title: const Text("Delete photo"),
+                              title: Text("delete_photo".tr),
                             ),
                         ],
                       ));
@@ -62,8 +64,14 @@ class SettingsPage extends GetView<SettingsController> {
                     return const Spinner();
                   }
                   return profile!.photoUrl != null
-                      ? UserAvatar(url: profile.photoUrl!)
-                      : NoAvatar(initials: profile.name.initials);
+                      ? Hero(
+                          tag: profile.id,
+                          child: UserAvatar(url: profile.photoUrl!),
+                        )
+                      : Hero(
+                          tag: profile.id,
+                          child: NoAvatar(initials: profile.name.initials),
+                        );
                 }),
                 subtitle: Text(profile!.bio ?? "your_personal_account".tr),
                 title: Text(
@@ -73,7 +81,9 @@ class SettingsPage extends GetView<SettingsController> {
                       ),
                 ),
                 trailing: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.toNamed(AppRoutes.profile, arguments: profile);
+                  },
                   child: Text(
                     "Edit",
                     style: Theme.of(context).textTheme.button!.copyWith(
@@ -96,95 +106,66 @@ class SettingsPage extends GetView<SettingsController> {
                             fontWeight: FontWeight.bold,
                           ),
                     ),
-                    Divider(),
+                    const Divider(),
                   ],
                 ),
               ),
-              ListTile(
+              CustomListTile(
                 onTap: () {},
-                leading: CircleAvatar(
-                  backgroundColor: Theme.of(context).colorScheme.primaryContainer.withOpacity(0.3),
-                  child: const Icon(IconlyLight.filter),
-                ),
-                title: Text(
-                  "Theme",
-                  style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
-                ),
-                subtitle: const Text("Light mode"),
+                title: "Theme",
+                subtitle: "Light mode",
+                leading: const Icon(IconlyLight.filter),
                 trailing: const Icon(IconlyLight.arrow_right_3),
               ),
-              ListTile(
+              CustomListTile(
                 onTap: () {},
-                leading: CircleAvatar(
-                  backgroundColor: Theme.of(context).colorScheme.primaryContainer.withOpacity(0.3),
-                  child: const Icon(IconlyLight.lock),
-                ),
-                title: Text(
-                  "Privacy & Security",
-                  style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
-                ),
-                subtitle: const Text("Privacy, Security, Data"),
+                title: "Privacy & Security",
+                subtitle: "Privacy, Security, Data",
+                leading: const Icon(IconlyLight.lock),
                 trailing: const Icon(IconlyLight.arrow_right_3),
               ),
-              ListTile(
+              CustomListTile(
                 onTap: () {},
-                leading: CircleAvatar(
-                  backgroundColor: Theme.of(context).colorScheme.primaryContainer.withOpacity(0.3),
-                  child: const Icon(IconlyLight.heart),
-                ),
-                title: Text(
-                  "Invite a friend",
-                  style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
-                ),
-                subtitle: const Text("Share the app with your friends"),
+                title: "Invite a friend",
+                subtitle: "Share StudyHive with your friends",
+                leading: const Icon(IconlyLight.heart),
                 trailing: const Icon(IconlyLight.arrow_right_3),
               ),
-              ListTile(
+              CustomListTile(
                 onTap: () {
                   showCustomBottomSheet(
-                      height: Get.height * 0.17,
-                      horizontalPadding: 0,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 8.0, left: 18),
-                            child: Text(
-                              "Are you sure you want to log out?",
-                              style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                            ),
+                    height: Get.height * 0.16,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 10),
+                          child: Text(
+                            "Are you sure you want to log out?",
+                            style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
                           ),
-                          ListTile(
-                            onTap: () {
-                              Get.back();
-                              controller.signOut();
-                            },
-                            leading: const Icon(IconlyLight.logout),
-                            title: const Text("Log out"),
-                            trailing: const Icon(IconlyLight.arrow_right_3),
-                          ),
-                        ],
-                      ));
+                        ),
+                        SizedBox(
+                          width: double.infinity,
+                          child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Theme.of(context).colorScheme.errorContainer,
+                              ),
+                              onPressed: () {
+                                Get.back();
+                                controller.signOut();
+                              },
+                              child: Text("logout".tr)),
+                        ),
+                      ],
+                    ),
+                  );
                 },
-                leading: CircleAvatar(
-                  backgroundColor: Theme.of(context).colorScheme.primaryContainer.withOpacity(0.3),
-                  child: const Icon(IconlyLight.logout),
-                ),
-                title: Text(
-                  "Log out",
-                  style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
-                ),
-                subtitle: const Text("Log out of your account"),
+                leading: const Icon(IconlyLight.logout),
+                title: 'logout'.tr,
+                subtitle: "logout_from_studyhive".tr,
                 trailing: const Icon(IconlyLight.arrow_right_3),
               ),
             ],

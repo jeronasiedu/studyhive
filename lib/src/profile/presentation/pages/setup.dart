@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studyhive/shared/extensions/buttons.dart';
 import 'package:studyhive/shared/theme/theme.dart';
+import 'package:studyhive/src/profile/presentation/manager/setup_controller.dart';
 
-import '../manager/profile_controller.dart';
-
-class SetupProfilePage extends GetView<ProfileController> {
+class SetupProfilePage extends GetView<SetupProfileController> {
   const SetupProfilePage({Key? key}) : super(key: key);
 
   @override

@@ -5,8 +5,9 @@ import 'package:ionicons/ionicons.dart';
 import '../../../../shared/ui/custom_avatar.dart';
 
 class UserAvatar extends StatelessWidget {
-  const UserAvatar({Key? key, required this.url}) : super(key: key);
+  const UserAvatar({Key? key, required this.url, this.size = UserAvatarSize.sm}) : super(key: key);
   final String url;
+  final UserAvatarSize size;
 
   @override
   Widget build(BuildContext context) {
@@ -15,28 +16,32 @@ class UserAvatar extends StatelessWidget {
       clipBehavior: Clip.none,
       children: [
         CustomAvatar(
-          radius: 23,
+          radius: size == UserAvatarSize.sm ? 23 : 60,
           imageUrl: url,
         ),
         Positioned(
-          bottom: -5,
-          right: -2,
+          bottom: size == UserAvatarSize.sm ? -5 : 1,
+          right: size == UserAvatarSize.sm ? -2 : 1,
           child: CircleAvatar(
-            radius: 11,
+            radius: size == UserAvatarSize.sm ? 11 : 15,
             backgroundColor: Theme.of(context).colorScheme.background,
             child: CircleAvatar(
-              radius: 9,
+              radius: size == UserAvatarSize.sm ? 9 : 13,
               backgroundColor: Get.isDarkMode ? theme.colorScheme.secondary : theme.colorScheme.tertiary,
               child: Icon(
                 Ionicons.camera_outline,
                 color: theme.colorScheme.background,
-                size: 13,
+                size: size == UserAvatarSize.sm ? 13 : 16,
               ),
             ),
           ),
         )
       ],
     );
-    ;
   }
+}
+
+enum UserAvatarSize {
+  sm,
+  lg,
 }

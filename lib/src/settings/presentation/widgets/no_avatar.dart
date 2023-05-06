@@ -3,8 +3,9 @@ import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
 
 class NoAvatar extends StatelessWidget {
-  const NoAvatar({Key? key, required this.initials}) : super(key: key);
+  const NoAvatar({Key? key, required this.initials, this.size = NoAvatarSize.sm}) : super(key: key);
   final String initials;
+  final NoAvatarSize size;
 
   @override
   Widget build(BuildContext context) {
@@ -13,14 +14,22 @@ class NoAvatar extends StatelessWidget {
       clipBehavior: Clip.none,
       children: [
         CircleAvatar(
-          radius: 23,
-          child: Text(initials),
+          radius: size == NoAvatarSize.sm ? 23 : 60,
+          child: Text(
+            initials,
+            style: size == NoAvatarSize.sm
+                ? theme.textTheme.bodyMedium
+                : theme.textTheme.titleLarge!.copyWith(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                  ),
+          ),
         ),
         Positioned(
-          bottom: -5,
-          right: -2,
+          bottom: size == NoAvatarSize.sm ? -5 : 1,
+          right: size == NoAvatarSize.sm ? -2 : 1,
           child: CircleAvatar(
-            radius: 11,
+            radius: size == NoAvatarSize.sm ? 9 : 13,
             backgroundColor: Theme.of(context).colorScheme.background,
             child: CircleAvatar(
               radius: 9,
@@ -28,7 +37,7 @@ class NoAvatar extends StatelessWidget {
               child: Icon(
                 Ionicons.camera_outline,
                 color: theme.colorScheme.background,
-                size: 13,
+                size: size == NoAvatarSize.sm ? 13 : 16,
               ),
             ),
           ),
@@ -36,4 +45,9 @@ class NoAvatar extends StatelessWidget {
       ],
     );
   }
+}
+
+enum NoAvatarSize {
+  sm,
+  lg,
 }

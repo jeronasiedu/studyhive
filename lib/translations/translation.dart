@@ -35,6 +35,11 @@ class Localization extends Translations {
           'full_name': 'Full Name',
           'we_will_use_this_for_your_profile': 'We will use this for your profile',
           'continue': 'Continue',
+          'take_a_photo': 'Take a photo',
+          'choose_from_gallery': 'Choose from gallery',
+          'delete_photo': 'Delete photo',
+          'logout': 'Log out',
+          'logout_from_studyhive': 'Log out from Study Hive',
         },
       };
 }

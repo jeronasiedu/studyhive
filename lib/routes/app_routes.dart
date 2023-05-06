@@ -7,4 +7,5 @@ abstract class AppRoutes {
   static const createHive = '/createHive';
   static const settings = '/settings';
   static const setupProfile = '/setupProfile';
+  static const profile = '/profile';
 }

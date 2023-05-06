@@ -43,7 +43,6 @@ class PhoneAuthPage extends GetView<AuthController> {
                     },
                     onInputChanged: controller.onPhoneNumberChanged,
                     keyboardType: TextInputType.phone,
-                    // spaceBetweenSelectorAndTextField: 0,
                     formatInput: true,
                     autoFocus: true,
                     countries: const ['GH', 'GB', 'NG'],

@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:studyhive/src/hive/presentation/bindings/create_binding.dart';
 import 'package:studyhive/src/hive/presentation/pages/create.dart';
 import 'package:studyhive/src/profile/presentation/manager/profile_binding.dart';
+import 'package:studyhive/src/profile/presentation/pages/profile.dart';
 import 'package:studyhive/src/profile/presentation/pages/setup.dart';
 import 'package:studyhive/src/settings/presentation/manager/settings_binding.dart';
 import 'package:studyhive/src/settings/presentation/pages/settings.dart';
@@ -21,6 +22,7 @@ class RouteGet {
     GetPage(name: AppRoutes.onboarding, page: () => const OnboardingPage(), binding: OnboardingBinding()),
     GetPage(name: AppRoutes.phoneAuth, page: () => const PhoneAuthPage(), binding: AuthBinding()),
     GetPage(name: AppRoutes.setupProfile, page: () => const SetupProfilePage(), binding: ProfileBinding()),
+    GetPage(name: AppRoutes.profile, page: () => const ProfilePage(), binding: ProfileBinding()),
     GetPage(name: AppRoutes.createHive, page: () => const CreateHivePage(), binding: CreateHiveBinding()),
     GetPage(name: AppRoutes.settings, page: () => const SettingsPage(), binding: SettingsBinding()),
   ];
