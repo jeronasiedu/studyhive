@@ -12,7 +12,7 @@ _$_Hive _$$_HiveFromJson(Map<String, dynamic> json) => _$_Hive(
       description: json['description'] as String?,
       photoUrl: json['photoUrl'] as String?,
       members: (json['members'] as List<dynamic>?)
-              ?.map((e) => Profile.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => e as String)
               .toList() ??
           const [],
       createdBy: json['createdBy'] as String,

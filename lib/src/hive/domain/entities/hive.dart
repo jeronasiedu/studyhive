@@ -22,7 +22,7 @@ class Hive with _$Hive {
     String? photoUrl,
 
     /// Members of the Hive
-    @Default([]) List<Profile> members,
+    @Default([]) List<String> members,
 
     /// The ID of the user who created the Hive
     required String createdBy,

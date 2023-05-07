@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'profile.freezed.dart';
 part 'profile.g.dart';
 
-@freezed
+@Freezed(makeCollectionsUnmodifiable: false)
 class Profile with _$Profile {
   const factory Profile({
     /// Unique ID of the user

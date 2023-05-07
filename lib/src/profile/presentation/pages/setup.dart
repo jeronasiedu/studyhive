@@ -31,6 +31,7 @@ class SetupProfilePage extends GetView<SetupProfileController> {
                 ),
               ),
               TextFormField(
+                autofocus: true,
                 controller: controller.nameController,
                 keyboardType: TextInputType.name,
                 decoration: InputDecoration(

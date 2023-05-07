@@ -33,7 +33,7 @@ mixin _$Hive {
   String? get photoUrl => throw _privateConstructorUsedError;
 
   /// Members of the Hive
-  List<Profile> get members => throw _privateConstructorUsedError;
+  List<String> get members => throw _privateConstructorUsedError;
 
   /// The ID of the user who created the Hive
   String get createdBy =>
@@ -60,7 +60,7 @@ abstract class $HiveCopyWith<$Res> {
       String name,
       String? description,
       String? photoUrl,
-      List<Profile> members,
+      List<String> members,
       String createdBy,
       DateTime createdAt,
       DateTime updatedAt,
@@ -110,7 +110,7 @@ class _$HiveCopyWithImpl<$Res, $Val extends Hive>
       members: null == members
           ? _value.members
           : members // ignore: cast_nullable_to_non_nullable
-              as List<Profile>,
+              as List<String>,
       createdBy: null == createdBy
           ? _value.createdBy
           : createdBy // ignore: cast_nullable_to_non_nullable
@@ -142,7 +142,7 @@ abstract class _$$_HiveCopyWith<$Res> implements $HiveCopyWith<$Res> {
       String name,
       String? description,
       String? photoUrl,
-      List<Profile> members,
+      List<String> members,
       String createdBy,
       DateTime createdAt,
       DateTime updatedAt,
@@ -188,7 +188,7 @@ class __$$_HiveCopyWithImpl<$Res> extends _$HiveCopyWithImpl<$Res, _$_Hive>
       members: null == members
           ? _value.members
           : members // ignore: cast_nullable_to_non_nullable
-              as List<Profile>,
+              as List<String>,
       createdBy: null == createdBy
           ? _value.createdBy
           : createdBy // ignore: cast_nullable_to_non_nullable
@@ -244,7 +244,7 @@ class _$_Hive implements _Hive {
   /// Members of the Hive
   @override
   @JsonKey()
-  final List<Profile> members;
+  final List<String> members;
 
   /// The ID of the user who created the Hive
   @override
@@ -322,7 +322,7 @@ abstract class _Hive implements Hive {
       required final String name,
       final String? description,
       final String? photoUrl,
-      final List<Profile> members,
+      final List<String> members,
       required final String createdBy,
       required final DateTime createdAt,
       required final DateTime updatedAt,
@@ -349,7 +349,7 @@ abstract class _Hive implements Hive {
   @override
 
   /// Members of the Hive
-  List<Profile> get members;
+  List<String> get members;
   @override
 
   /// The ID of the user who created the Hive

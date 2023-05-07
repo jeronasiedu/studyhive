@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:studyhive/src/hive/presentation/bindings/create_binding.dart';
+import 'package:studyhive/src/hive/presentation/bindings/hive_binding.dart';
 import 'package:studyhive/src/hive/presentation/pages/create.dart';
+import 'package:studyhive/src/hive/presentation/pages/hive.dart';
 import 'package:studyhive/src/profile/presentation/manager/profile_binding.dart';
 import 'package:studyhive/src/profile/presentation/pages/profile.dart';
 import 'package:studyhive/src/profile/presentation/pages/setup.dart';
@@ -25,5 +27,6 @@ class RouteGet {
     GetPage(name: AppRoutes.profile, page: () => const ProfilePage(), binding: ProfileBinding()),
     GetPage(name: AppRoutes.createHive, page: () => const CreateHivePage(), binding: CreateHiveBinding()),
     GetPage(name: AppRoutes.settings, page: () => const SettingsPage(), binding: SettingsBinding()),
+    GetPage(name: AppRoutes.hive, page: () => const HivePage(), binding: HiveBinding()),
   ];
 }

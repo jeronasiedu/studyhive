@@ -1,32 +1,39 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:studyhive/src/profile/data/remote/data_sources/profile_remote_database.dart';
 
-import '../../../../profile/domain/entities/profile.dart';
 import '../../../domain/entities/hive.dart';
 
 abstract class HiveRemoteDatabase {
-  /// Returns a list of all the Hives
+  /// Returns a list of all the [Hive]s
   Stream<List<Hive>> list(String userId);
 
-  /// Creates a new Hive
+  /// Creates a new [Hive]
   Future<String> create(Hive hive);
 
-  /// Updates an existing Hive
+  /// Updates an existing [Hive]
   Future<String> update(Hive hive);
 
-  /// Deletes an existing Hive
+  /// Deletes an existing [Hive]
   Future<String> delete(String hiveId);
 
-  /// Joins an existing Hive
+  /// Joins an existing [Hive]
   Future<String> join({required String hiveId, required String userId});
+
+  /// Leaves an existing [Hive]
+  Future<String> leave({required String hiveId, required String userId});
+
+  /// Returns details of a [Hive]
+  Future<Hive> details(String hiveId);
 }
 
 class HiveRemoteDatabaseImpl implements HiveRemoteDatabase {
+  final ProfileRemoteDatabase _profileRemoteDatabase;
+
+  HiveRemoteDatabaseImpl(this._profileRemoteDatabase);
+
   @override
   Future<String> create(Hive hive) async {
-    final members = hive.members.map((member) => member.id).toList();
-    final hiveWithMembersIds = hive.toJson();
-    hiveWithMembersIds['members'] = members;
-    await FirebaseFirestore.instance.collection('hives').doc(hive.id).set(hiveWithMembersIds);
+    await FirebaseFirestore.instance.collection('hives').doc(hive.id).set(hive.toJson());
     return hive.id;
   }
 
@@ -46,30 +53,31 @@ class HiveRemoteDatabaseImpl implements HiveRemoteDatabase {
 
   @override
   Stream<List<Hive>> list(String userId) async* {
-    final hives = FirebaseFirestore.instance.collection('hives').where('members', arrayContains: userId).snapshots();
-    await for (final hive in hives) {
-      final List<Profile> members = [];
-      await Future.wait(hive.docs.map((hive) async {
-        final memberIds = hive.data()['members'] as List<String>;
-        final memberDocs = await Future.wait(
-            memberIds.map((memberId) => FirebaseFirestore.instance.collection('profiles').doc(memberId).get()));
-        final memberProfiles = memberDocs.map((memberDoc) => Profile.fromJson(memberDoc.data()!)).toList();
-        members.addAll(memberProfiles);
-      }));
-      yield hive.docs.map((hive) {
-        final hiveData = hive.data();
-        hiveData['members'] = members;
-        return Hive.fromJson(hiveData);
-      }).toList();
-    }
+    yield* FirebaseFirestore.instance
+        .collection('hives')
+        .where('members', arrayContains: userId)
+        .orderBy('name')
+        .snapshots()
+        .map((snapshot) => snapshot.docs.map((doc) => Hive.fromJson(doc.data())).toList());
   }
 
   @override
   Future<String> update(Hive hive) async {
-    final members = hive.members.map((member) => member.id).toList();
-    final hiveWithMembersIds = hive.toJson();
-    hiveWithMembersIds['members'] = members;
-    await FirebaseFirestore.instance.collection('hives').doc(hive.id).update(hiveWithMembersIds);
+    await FirebaseFirestore.instance.collection('hives').doc(hive.id).update(hive.toJson());
     return hive.id;
+  }
+
+  @override
+  Future<String> leave({required String hiveId, required String userId}) async {
+    await FirebaseFirestore.instance.collection('hives').doc(hiveId).update({
+      'members': FieldValue.arrayRemove([userId])
+    });
+    return hiveId;
+  }
+
+  @override
+  Future<Hive> details(String hiveId) async {
+    final hive = await FirebaseFirestore.instance.collection('hives').doc(hiveId).get();
+    return Hive.fromJson(hive.data()!);
   }
 }

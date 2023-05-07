@@ -8,4 +8,5 @@ abstract class AppRoutes {
   static const settings = '/settings';
   static const setupProfile = '/setupProfile';
   static const profile = '/profile';
+  static const hive = '/hive/:id';
 }

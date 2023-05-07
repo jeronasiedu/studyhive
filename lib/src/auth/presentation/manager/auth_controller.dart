@@ -5,6 +5,7 @@ import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:pinput/pinput.dart';
 
 import '../../../../routes/app_pages.dart';
+import '../../../../shared/network/network.dart';
 import '../../../../shared/ui/snackbars.dart';
 import '../../../profile/domain/entities/profile.dart';
 import '../../domain/repositories/auth_repository.dart';
@@ -23,6 +24,8 @@ class AuthController extends GetxController {
 
   final otpController = TextEditingController();
 
+  final networkInfo = Get.find<NetworkInfo>();
+
   void onPhoneNumberChanged(PhoneNumber? value) {
     phoneNumber = value!.phoneNumber;
   }
@@ -33,6 +36,11 @@ class AuthController extends GetxController {
   }
 
   Future<void> submitPhoneNumber() async {
+    if (!await networkInfo.hasInternet()) {
+      showErrorSnackbar(message: 'no_internet'.tr);
+      return;
+    }
+
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
       gettingOtp.value = true;

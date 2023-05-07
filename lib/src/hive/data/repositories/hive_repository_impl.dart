@@ -68,9 +68,6 @@ class HiveRepositoryImpl implements HiveRepository {
         return Right(result);
       }
       final result = remoteDatabase.list(userId);
-      result.listen((hives) {
-        localDatabase.save(hives);
-      });
       return Right(result);
     } catch (e) {
       return const Left(Failure("Error listing hives"));
@@ -88,6 +85,26 @@ class HiveRepositoryImpl implements HiveRepository {
       return Right(result);
     } catch (e) {
       return const Left(Failure("Error updating hive"));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> leave({required String hiveId, required String userId}) async {
+    // TODO: implement leave
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<Failure, Hive>> details(String hiveId) async {
+    if (!await networkInfo.hasInternet()) {
+      return const Left(Failure("No internet connection"));
+    }
+
+    try {
+      final result = await remoteDatabase.details(hiveId);
+      return Right(result);
+    } catch (e) {
+      return const Left(Failure("Error getting hive details"));
     }
   }
 }

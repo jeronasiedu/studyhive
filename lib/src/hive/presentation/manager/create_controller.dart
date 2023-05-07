@@ -62,7 +62,7 @@ class CreateHiveController extends GetxController {
         showErrorSnackbar(message: "Check your connectivity and try again");
       }
     } else {
-      downloadUrl = 'https://api.dicebear.com/5.x/initials/png?seed=${nameController.text.trim()}';
+      downloadUrl = null;
     }
 
     final hive = Hive(
@@ -71,7 +71,7 @@ class CreateHiveController extends GetxController {
       createdBy: profile.id,
       createdAt: DateTime.now(),
       updatedAt: DateTime.now(),
-      members: [profile],
+      members: [profile.id],
       photoUrl: downloadUrl,
       conversations: [],
     );
