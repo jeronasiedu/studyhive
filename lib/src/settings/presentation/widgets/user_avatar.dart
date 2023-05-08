@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ionicons/ionicons.dart';
+import 'package:iconly/iconly.dart';
 
 import '../../../../shared/ui/custom_avatar.dart';
 
@@ -29,7 +29,7 @@ class UserAvatar extends StatelessWidget {
               radius: size == UserAvatarSize.sm ? 9 : 13,
               backgroundColor: Get.isDarkMode ? theme.colorScheme.secondary : theme.colorScheme.tertiary,
               child: Icon(
-                Ionicons.camera_outline,
+                IconlyLight.camera,
                 color: theme.colorScheme.background,
                 size: size == UserAvatarSize.sm ? 13 : 16,
               ),

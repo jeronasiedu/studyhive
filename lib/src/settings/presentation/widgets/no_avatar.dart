@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ionicons/ionicons.dart';
+import 'package:iconly/iconly.dart';
 
 class NoAvatar extends StatelessWidget {
   const NoAvatar({Key? key, required this.initials, this.size = NoAvatarSize.sm}) : super(key: key);
@@ -35,7 +35,7 @@ class NoAvatar extends StatelessWidget {
               radius: 9,
               backgroundColor: Get.isDarkMode ? theme.colorScheme.secondary : theme.colorScheme.tertiary,
               child: Icon(
-                Ionicons.camera_outline,
+                IconlyLight.camera,
                 color: theme.colorScheme.background,
                 size: size == NoAvatarSize.sm ? 13 : 16,
               ),

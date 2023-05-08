@@ -70,10 +70,30 @@ class HomePage extends GetView<HomeController> {
                 leading: hive.photoUrl == null ? Text(hive.name.initials) : null,
                 url: hive.photoUrl,
                 onTap: () {
-                  Get.toNamed('/hive/${hive.id}');
+                  Get.toNamed('/hive/${hive.id}', arguments: hive);
                 },
+                subtitle: "This is hive ${index + 1}",
                 title: hive.name,
-                trailing: const Icon(IconlyLight.arrow_right_3),
+                trailing: PopupMenuButton(
+                  tooltip: 'more',
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                  icon: const Icon(Icons.more_vert),
+                  onSelected: (value) {
+                    if (value == 0) {
+                    } else if (value == 1) {}
+                  },
+                  itemBuilder: (context) {
+                    return hive.createdBy == controller.user.uid
+                        ? [
+                            const PopupMenuItem(value: 0, child: Text('Share Hive')),
+                            const PopupMenuItem(value: 1, child: Text('Delete Hive')),
+                          ]
+                        : [
+                            const PopupMenuItem(value: 0, child: Text('Leave Hive')),
+                            const PopupMenuItem(value: 1, child: Text('Report Hive')),
+                          ];
+                  },
+                ),
               );
             },
           );

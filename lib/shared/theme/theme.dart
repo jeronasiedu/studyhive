@@ -7,8 +7,19 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 final lightTheme = FlexThemeData.light(
-  usedColors: 1,
-  scheme: FlexScheme.tealM3,
+  usedColors: 4,
+  // scheme: FlexScheme.tealM3,
+  colors: const FlexSchemeColor(
+    primary: Color(0xff00676C),
+    primaryContainer: Color(0xffb0cfe2),
+    secondary: Color(0xffD9C6F4),
+    secondaryContainer: Color(0xfff1daff),
+    tertiary: Color(0xff37474f),
+    tertiaryContainer: Color(0xffb0bec5),
+    appBarColor: Color(0xfff1daff),
+    error: Color(0xffb00020),
+  ),
+
   surfaceMode: FlexSurfaceMode.highBackgroundLowScaffold,
   blendLevel: 3,
   appBarStyle: FlexAppBarStyle.background,
@@ -18,8 +29,8 @@ final lightTheme = FlexThemeData.light(
     defaultRadius: 6,
     defaultRadiusAdaptive: 6.0,
     adaptiveRadius: FlexAdaptive.all(),
-    elevatedButtonSchemeColor: SchemeColor.onPrimaryContainer,
-    elevatedButtonSecondarySchemeColor: SchemeColor.primaryContainer,
+    elevatedButtonSchemeColor: SchemeColor.onPrimary,
+    elevatedButtonSecondarySchemeColor: SchemeColor.primary,
     segmentedButtonSchemeColor: SchemeColor.primary,
     inputDecoratorSchemeColor: SchemeColor.primary,
     inputDecoratorBackgroundAlpha: 21,
@@ -68,8 +79,17 @@ final lightTheme = FlexThemeData.light(
   fontFamily: GoogleFonts.inter().fontFamily,
 );
 final darkTheme = FlexThemeData.dark(
-  scheme: FlexScheme.cyanM3,
-  usedColors: 1,
+  colors: const FlexSchemeColor(
+    primary: Color(0xff00676C),
+    primaryContainer: Color(0xffb0cfe2),
+    secondary: Color(0xffD9C6F4),
+    secondaryContainer: Color(0xfff1daff),
+    tertiary: Color(0xff37474f),
+    tertiaryContainer: Color(0xffb0bec5),
+    appBarColor: Color(0xfff1daff),
+    error: Color(0xffb00020),
+  ),
+  usedColors: 4,
   surfaceMode: FlexSurfaceMode.highBackgroundLowScaffold,
   blendLevel: 4,
   appBarStyle: FlexAppBarStyle.background,
@@ -79,8 +99,8 @@ final darkTheme = FlexThemeData.dark(
     defaultRadius: 1.0,
     defaultRadiusAdaptive: 4.0,
     adaptiveRadius: FlexAdaptive.all(),
-    elevatedButtonSchemeColor: SchemeColor.onPrimaryContainer,
-    elevatedButtonSecondarySchemeColor: SchemeColor.primaryContainer,
+    elevatedButtonSchemeColor: SchemeColor.onPrimary,
+    elevatedButtonSecondarySchemeColor: SchemeColor.primary,
     segmentedButtonSchemeColor: SchemeColor.primary,
     inputDecoratorSchemeColor: SchemeColor.primary,
     inputDecoratorBackgroundAlpha: 43,

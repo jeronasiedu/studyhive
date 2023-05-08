@@ -1,8 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:studyhive/src/hive/domain/entities/message.dart';
 
-import '../../../profile/domain/entities/profile.dart';
-
 part 'hive.freezed.dart';
 part 'hive.g.dart';
 
@@ -36,4 +34,12 @@ class Hive with _$Hive {
   }) = _Hive;
 
   factory Hive.fromJson(Map<String, dynamic> json) => _$HiveFromJson(json);
+
+  factory Hive.empty() => Hive(
+        id: '',
+        name: '',
+        createdBy: '',
+        createdAt: DateTime.now(),
+        updatedAt: DateTime.now(),
+      );
 }

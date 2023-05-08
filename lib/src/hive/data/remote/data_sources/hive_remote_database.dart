@@ -23,7 +23,7 @@ abstract class HiveRemoteDatabase {
   Future<String> leave({required String hiveId, required String userId});
 
   /// Returns details of a [Hive]
-  Future<Hive> details(String hiveId);
+  Stream<Hive> details(String hiveId);
 }
 
 class HiveRemoteDatabaseImpl implements HiveRemoteDatabase {
@@ -76,8 +76,11 @@ class HiveRemoteDatabaseImpl implements HiveRemoteDatabase {
   }
 
   @override
-  Future<Hive> details(String hiveId) async {
-    final hive = await FirebaseFirestore.instance.collection('hives').doc(hiveId).get();
-    return Hive.fromJson(hive.data()!);
+  Stream<Hive> details(String hiveId) async* {
+    yield* FirebaseFirestore.instance
+        .collection('hives')
+        .doc(hiveId)
+        .snapshots()
+        .map((snapshot) => Hive.fromJson(snapshot.data()!));
   }
 }

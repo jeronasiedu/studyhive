@@ -134,12 +134,12 @@ class SettingsPage extends GetView<SettingsController> {
               CustomListTile(
                 onTap: () {
                   showCustomBottomSheet(
-                    height: Get.height * 0.16,
+                    height: Get.height * 0.14,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(bottom: 10),
+                          padding: const EdgeInsets.only(bottom: 14),
                           child: Text(
                             "Are you sure you want to log out?",
                             style: Theme.of(context).textTheme.titleMedium!.copyWith(
@@ -149,15 +149,14 @@ class SettingsPage extends GetView<SettingsController> {
                         ),
                         SizedBox(
                           width: double.infinity,
-                          child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Theme.of(context).colorScheme.errorContainer,
-                              ),
-                              onPressed: () {
-                                Get.back();
-                                controller.signOut();
-                              },
-                              child: Text("logout".tr)),
+                          child: ElevatedButton.icon(
+                            onPressed: () {
+                              Get.back();
+                              controller.signOut();
+                            },
+                            icon: const Icon(IconlyLight.logout),
+                            label: Text("logout".tr),
+                          ),
                         ),
                       ],
                     ),

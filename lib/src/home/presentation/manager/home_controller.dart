@@ -12,11 +12,9 @@ import '../../../hive/domain/entities/hive.dart';
 class HomeController extends GetxController {
   final listHives = Get.find<ListHives>();
   final user = FirebaseAuth.instance.currentUser!;
-  RxList<Hive> hives = RxList<Hive>([]);
 
   @override
   void onInit() async {
-    hives.bindStream(list());
     InternetConnectionChecker().onStatusChange.listen((status) {
       switch (status) {
         case InternetConnectionStatus.connected:

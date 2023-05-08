@@ -2,7 +2,5 @@
 class Assets {
   Assets._();
 
-  static const String assetsImage1 = 'assets/image1.png';
-  static const String assetsImage2 = 'assets/image2.png';
-  static const String assetsImage3 = 'assets/image3.png';
+  static const String onboarding = 'assets/onboarding.gif';
 }

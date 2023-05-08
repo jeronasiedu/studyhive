@@ -81,7 +81,7 @@ class ProfilePage extends GetView<ProfileController> {
                 title: controller.profile.name,
                 subtitle: "This name will be visible to your friends",
                 leading: const Icon(
-                  IconlyLight.user,
+                  IconlyLight.profile,
                 ),
                 trailing: const Icon(
                   IconlyLight.edit,

@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studyhive/routes/app_pages.dart';
@@ -24,11 +26,14 @@ void main() async {
   final bool isProfileSetup = await profileLocalDb.finishedSetup();
 
   runZonedGuarded(
-      () => runApp(MyApp(
-            isAuthenticated: isAuthenticated,
-            isProfileSetup: isProfileSetup,
+      () => runApp(DevicePreview(
+            enabled: !kReleaseMode,
+            builder: (context) => MyApp(
+              isAuthenticated: isAuthenticated,
+              isProfileSetup: isProfileSetup,
+            ),
           )), (error, stack) {
-    print('runZonedGuarded: Caught error in my root zone.');
+    print('runZonedGuarded: Caught error in my root zone. $error');
     print(error);
   });
 }
@@ -54,7 +59,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      // locale: Get.deviceLocale,
+      useInheritedMediaQuery: true,
       locale: Get.deviceLocale,
+      builder: DevicePreview.appBuilder,
       translations: Localization(),
       title: 'Study Hive',
       theme: lightTheme,

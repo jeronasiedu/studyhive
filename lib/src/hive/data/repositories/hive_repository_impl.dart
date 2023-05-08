@@ -95,13 +95,13 @@ class HiveRepositoryImpl implements HiveRepository {
   }
 
   @override
-  Future<Either<Failure, Hive>> details(String hiveId) async {
-    if (!await networkInfo.hasInternet()) {
+  Future<Either<Failure, Stream<Hive>>> details(String hiveId) async {
+    final connected = await networkInfo.hasInternet();
+    if (!connected) {
       return const Left(Failure("No internet connection"));
     }
-
     try {
-      final result = await remoteDatabase.details(hiveId);
+      final result = remoteDatabase.details(hiveId);
       return Right(result);
     } catch (e) {
       return const Left(Failure("Error getting hive details"));

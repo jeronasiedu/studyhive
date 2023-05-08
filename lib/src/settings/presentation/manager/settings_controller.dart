@@ -46,7 +46,7 @@ class SettingsController extends GetxController with StateMixin<Profile> {
   Future<void> chooseProfile(ImageSource source) async {
     final pickedImage = await pickImage(maxHeight: 512, maxWidth: 512, source: source);
     if (pickedImage != null) {
-      final croppedImage = await cropImage(imagePath: pickedImage.path, title: 'Choose Hive Profile');
+      final croppedImage = await cropImage(imagePath: pickedImage.path, title: 'Choose Profile');
       if (croppedImage != null) {
         uploading.value = true;
         final downloadUrl = await uploadImage(imagePath: croppedImage.path, folder: "user_profiles");
@@ -55,7 +55,7 @@ class SettingsController extends GetxController with StateMixin<Profile> {
           await _updateProfile(_profile);
           uploading.value = false;
         } else {
-          showErrorSnackbar(message: "There was an error uploading your profile picture");
+          showErrorSnackbar(message: "There was an error updating your profile picture");
           uploading.value = false;
         }
       }

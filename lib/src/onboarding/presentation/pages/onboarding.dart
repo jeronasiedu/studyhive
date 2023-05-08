@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:studyhive/generated/assets.dart';
 import 'package:studyhive/routes/app_pages.dart';
 import 'package:studyhive/shared/extensions/buttons.dart';
 
@@ -19,6 +20,13 @@ class OnboardingPage extends GetView<OnboardingController> {
         child: Center(
           child: Column(
             children: [
+              const Spacer(),
+              ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 400),
+                child: Image.asset(
+                  Assets.onboarding,
+                ),
+              ),
               const Spacer(),
               Text(
                 'welcome'.tr,

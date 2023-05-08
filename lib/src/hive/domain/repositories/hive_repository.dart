@@ -22,5 +22,5 @@ abstract class HiveRepository {
   Future<Either<Failure, String>> leave({required String hiveId, required String userId});
 
   /// Returns details of a [Hive]
-  Future<Either<Failure, Hive>> details(String hiveId);
+  Future<Either<Failure, Stream<Hive>>> details(String hiveId);
 }
