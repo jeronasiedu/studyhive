@@ -112,22 +112,22 @@ class SettingsPage extends GetView<SettingsController> {
               ),
               CustomListTile(
                 onTap: () {},
-                title: "Theme",
-                subtitle: "Light mode",
+                title: "theme".tr,
+                subtitle: "light_mode".tr,
                 leading: const Icon(IconlyLight.filter),
                 trailing: const Icon(IconlyLight.arrow_right_3),
               ),
               CustomListTile(
                 onTap: () {},
-                title: "Privacy & Security",
-                subtitle: "Privacy, Security, Data",
+                title: "privacy_security".tr,
+                subtitle: 'control_your_privacy'.tr,
                 leading: const Icon(IconlyLight.lock),
                 trailing: const Icon(IconlyLight.arrow_right_3),
               ),
               CustomListTile(
                 onTap: () {},
-                title: "Invite a friend",
-                subtitle: "Share StudyHive with your friends",
+                title: "invite_a_friend".tr,
+                subtitle: "share_studyhive_with_your_friends".tr,
                 leading: const Icon(IconlyLight.heart),
                 trailing: const Icon(IconlyLight.arrow_right_3),
               ),
@@ -141,7 +141,7 @@ class SettingsPage extends GetView<SettingsController> {
                         Padding(
                           padding: const EdgeInsets.only(bottom: 14),
                           child: Text(
-                            "Are you sure you want to log out?",
+                            "logout_prompt".tr,
                             style: Theme.of(context).textTheme.titleMedium!.copyWith(
                                   fontWeight: FontWeight.bold,
                                 ),

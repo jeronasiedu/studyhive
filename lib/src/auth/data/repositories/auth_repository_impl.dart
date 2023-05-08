@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:studyhive/shared/error/failure.dart';
 import 'package:studyhive/src/auth/domain/repositories/auth_repository.dart';
@@ -27,7 +28,7 @@ class AuthRepositoryImpl implements AuthRepository {
     // create an account with
     try {
       if (!await networkInfo.hasInternet()) {
-        return const Left(Failure("No internet connection"));
+        return Left(Failure('no_internet'.tr));
       }
 
       GoogleSignInAccount? googleSignInAccount = await GoogleSignIn().signIn();
@@ -66,7 +67,7 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either<Failure, bool>> continueWithPhone(Profile profile) async {
     try {
       if (!await networkInfo.hasInternet()) {
-        return const Left(Failure("No internet connection"));
+        return Left(Failure('no_internet'.tr));
       }
 
       final userExists = await remoteDatabase.exists(profile.id);
@@ -87,7 +88,7 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either<Failure, void>> signOut() async {
     try {
       if (!await networkInfo.hasInternet()) {
-        return const Left(Failure("No internet connection"));
+        return Left(Failure('no_internet'.tr));
       }
       await FirebaseAuth.instance.signOut();
       await localDatabase.delete();

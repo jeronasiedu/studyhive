@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:get/get.dart';
 import 'package:studyhive/shared/error/failure.dart';
 import 'package:studyhive/shared/network/network.dart';
 import 'package:studyhive/src/hive/data/local/data_sources/hive_local_database.dart';
@@ -22,7 +23,7 @@ class HiveRepositoryImpl implements HiveRepository {
     try {
       final connected = await networkInfo.hasInternet();
       if (!connected) {
-        return const Left(Failure("No internet connection"));
+        return Left(Failure('no_internet'.tr));
       }
       final result = await remoteDatabase.create(hive);
       return Right(result);
@@ -36,7 +37,7 @@ class HiveRepositoryImpl implements HiveRepository {
     try {
       final connected = await networkInfo.hasInternet();
       if (!connected) {
-        return const Left(Failure("No internet connection"));
+        return Left(Failure('no_internet'.tr));
       }
       final result = await remoteDatabase.delete(hiveId);
       return Right(result);
@@ -50,7 +51,7 @@ class HiveRepositoryImpl implements HiveRepository {
     try {
       final connected = await networkInfo.hasInternet();
       if (!connected) {
-        return const Left(Failure("No internet connection"));
+        return Left(Failure('no_internet'.tr));
       }
       final result = await remoteDatabase.join(hiveId: hiveId, userId: userId);
       return Right(result);
@@ -79,7 +80,7 @@ class HiveRepositoryImpl implements HiveRepository {
     try {
       final connected = await networkInfo.hasInternet();
       if (!connected) {
-        return const Left(Failure("No internet connection"));
+        return Left(Failure('no_internet'.tr));
       }
       final result = await remoteDatabase.update(hive);
       return Right(result);
@@ -98,7 +99,7 @@ class HiveRepositoryImpl implements HiveRepository {
   Future<Either<Failure, Stream<Hive>>> details(String hiveId) async {
     final connected = await networkInfo.hasInternet();
     if (!connected) {
-      return const Left(Failure("No internet connection"));
+      return Left(Failure('no_internet'.tr));
     }
     try {
       final result = remoteDatabase.details(hiveId);

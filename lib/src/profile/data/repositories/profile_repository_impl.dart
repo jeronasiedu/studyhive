@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:get/get.dart';
 import 'package:studyhive/shared/network/network.dart';
 
 import '../../../../shared/error/failure.dart';
@@ -26,7 +27,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
         if (localProfile != Profile.empty()) {
           return Right(localProfile);
         }
-        return const Left(Failure('No internet connection'));
+        return Left(Failure("no_internet".tr));
       }
       final remoteProfile = await remoteDatabase.retrieve(userId);
       await localDatabase.save(remoteProfile);
@@ -51,7 +52,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
   Future<Either<Failure, void>> delete(String userId) async {
     try {
       if (!await networkInfo.hasInternet()) {
-        return const Left(Failure('No internet connection'));
+        return Left(Failure("no_internet".tr));
       }
       await localDatabase.delete();
       await remoteDatabase.delete(userId);
@@ -65,7 +66,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
   Future<Either<Failure, Profile>> update(Profile profile) async {
     try {
       if (!await networkInfo.hasInternet()) {
-        return const Left(Failure('No internet connection'));
+        return Left(Failure('no_internet'.tr));
       }
       await localDatabase.save(profile);
       final results = await remoteDatabase.update(profile);
