@@ -31,30 +31,30 @@ class SettingsPage extends GetView<SettingsController> {
                       height: profile.photoUrl != null ? Get.height * 0.25 : Get.height * 0.18,
                       child: Column(
                         children: [
-                          ListTile(
+                          CustomListTile(
                             onTap: () {
                               Get.back();
                               controller.chooseProfile(ImageSource.camera);
                             },
                             leading: const Icon(IconlyLight.camera),
-                            title: Text("take_a_photo".tr),
+                            title: "take_a_photo".tr,
                           ),
-                          ListTile(
+                          CustomListTile(
                             onTap: () {
                               Get.back();
                               controller.chooseProfile(ImageSource.gallery);
                             },
                             leading: const Icon(IconlyLight.image),
-                            title: Text("choose_from_gallery".tr),
+                            title: "choose_from_gallery".tr,
                           ),
                           if (profile.photoUrl != null)
-                            ListTile(
+                            CustomListTile(
                               onTap: () {
                                 Get.back();
                                 controller.deleteProfile();
                               },
                               leading: const Icon(IconlyLight.delete),
-                              title: Text("delete_photo".tr),
+                              title: "delete_photo".tr,
                             ),
                         ],
                       ));

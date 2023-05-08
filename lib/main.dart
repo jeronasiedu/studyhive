@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studyhive/routes/app_pages.dart';
@@ -27,7 +26,7 @@ void main() async {
 
   runZonedGuarded(
       () => runApp(DevicePreview(
-            enabled: !kReleaseMode,
+            enabled: false,
             builder: (context) => MyApp(
               isAuthenticated: isAuthenticated,
               isProfileSetup: isProfileSetup,
@@ -59,7 +58,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      // locale: Get.deviceLocale,
       useInheritedMediaQuery: true,
       locale: Get.deviceLocale,
       builder: DevicePreview.appBuilder,
