@@ -87,28 +87,27 @@ class ProfilePage extends GetView<ProfileController> {
                   IconlyLight.edit,
                 ),
               ),
-              CustomListTile(
-                onTap: () {},
-                title: "About",
-                subtitle: controller.profile.bio ?? "Add a bio",
-                leading: const Icon(
-                  IconlyLight.info_circle,
+              if (controller.profile.phoneNumber != null)
+                CustomListTile(
+                  onTap: () {},
+                  title: "Phone",
+                  subtitle: controller.profile.phoneNumber!,
+                  leading: const Icon(
+                    IconlyLight.call,
+                  ),
+                  trailing: const Icon(
+                    IconlyLight.edit,
+                  ),
                 ),
-                trailing: const Icon(
-                  IconlyLight.edit,
+              if (controller.profile.email != null)
+                CustomListTile(
+                  onTap: () {},
+                  title: "Email",
+                  subtitle: controller.profile.email!,
+                  leading: const Icon(
+                    IconlyLight.call,
+                  ),
                 ),
-              ),
-              CustomListTile(
-                onTap: () {},
-                title: "Phone",
-                subtitle: controller.profile.phoneNumber ?? "Add a phone number",
-                leading: const Icon(
-                  IconlyLight.call,
-                ),
-                trailing: const Icon(
-                  IconlyLight.edit,
-                ),
-              ),
             ],
           ),
         ),

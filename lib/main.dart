@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studyhive/routes/app_pages.dart';
@@ -16,24 +17,25 @@ import 'firebase_options.dart';
 
 void main() async {
   await initServices();
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  final profileLocalDb = Get.find<ProfileLocalDatabase>();
-  final bool isAuthenticated = await profileLocalDb.authStatus();
-  final bool isProfileSetup = await profileLocalDb.finishedSetup();
-
-  runZonedGuarded(
-      () => runApp(DevicePreview(
-            enabled: false,
-            builder: (context) => MyApp(
-              isAuthenticated: isAuthenticated,
-              isProfileSetup: isProfileSetup,
-            ),
-          )), (error, stack) {
+  runZonedGuarded(() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+    final profileLocalDb = Get.find<ProfileLocalDatabase>();
+    final bool isAuthenticated = await profileLocalDb.authStatus();
+    final bool isProfileSetup = await profileLocalDb.finishedSetup();
+    runApp(DevicePreview(
+      enabled: false,
+      builder: (context) => MyApp(
+        isAuthenticated: isAuthenticated,
+        isProfileSetup: isProfileSetup,
+      ),
+    ));
+  }, (error, stack) {
     print('runZonedGuarded: Caught error in my root zone. $error');
-    print(error);
+    FirebaseCrashlytics.instance.recordError(error, stack);
   });
 }
 

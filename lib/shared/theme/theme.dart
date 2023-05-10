@@ -8,10 +8,9 @@ import 'package:google_fonts/google_fonts.dart';
 
 final lightTheme = FlexThemeData.light(
   usedColors: 4,
-  // scheme: FlexScheme.tealM3,
   colors: const FlexSchemeColor(
     primary: Color(0xff00676C),
-    primaryContainer: Color(0xffb0cfe2),
+    primaryContainer: Color(0xffD9C6F4),
     secondary: Color(0xffD9C6F4),
     secondaryContainer: Color(0xfff1daff),
     tertiary: Color(0xff37474f),
@@ -19,7 +18,6 @@ final lightTheme = FlexThemeData.light(
     appBarColor: Color(0xfff1daff),
     error: Color(0xffb00020),
   ),
-
   surfaceMode: FlexSurfaceMode.highBackgroundLowScaffold,
   blendLevel: 3,
   appBarStyle: FlexAppBarStyle.background,
@@ -28,6 +26,8 @@ final lightTheme = FlexThemeData.light(
     useM2StyleDividerInM3: true,
     defaultRadius: 6,
     defaultRadiusAdaptive: 6.0,
+    fabAlwaysCircular: true,
+    fabUseShape: true,
     adaptiveRadius: FlexAdaptive.all(),
     elevatedButtonSchemeColor: SchemeColor.onPrimary,
     elevatedButtonSecondarySchemeColor: SchemeColor.primary,
@@ -99,6 +99,8 @@ final darkTheme = FlexThemeData.dark(
     defaultRadius: 1.0,
     defaultRadiusAdaptive: 4.0,
     adaptiveRadius: FlexAdaptive.all(),
+    fabAlwaysCircular: true,
+    fabUseShape: true,
     elevatedButtonSchemeColor: SchemeColor.onPrimary,
     elevatedButtonSecondarySchemeColor: SchemeColor.primary,
     segmentedButtonSchemeColor: SchemeColor.primary,

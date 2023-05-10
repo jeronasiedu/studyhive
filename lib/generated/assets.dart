@@ -2,5 +2,7 @@
 class Assets {
   Assets._();
 
+  static const String discussion = 'assets/discussion.png';
   static const String onboarding = 'assets/onboarding.gif';
+  static const String hiveWork = 'assets/hive_work.png';
 }

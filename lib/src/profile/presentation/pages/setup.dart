@@ -34,6 +34,7 @@ class SetupProfilePage extends GetView<SetupProfileController> {
                 autofocus: true,
                 controller: controller.nameController,
                 keyboardType: TextInputType.name,
+                maxLength: 20,
                 decoration: InputDecoration(
                   hintText: 'full_name'.tr,
                   contentPadding: inputPadding,

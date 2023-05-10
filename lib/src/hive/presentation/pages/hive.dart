@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
-import 'package:studyhive/shared/ui/custom_bottomsheet.dart';
-import 'package:studyhive/shared/ui/custom_listtile.dart';
 import 'package:studyhive/src/hive/presentation/manager/hive_controller.dart';
+import 'package:studyhive/src/hive/presentation/pages/invite.dart';
+import 'package:studyhive/src/hive/presentation/pages/new_chat.dart';
+
+import '../../../../shared/ui/custom_bottomsheet.dart';
+import '../../../../shared/ui/custom_listtile.dart';
 
 class HivePage extends GetView<HiveController> {
   const HivePage({Key? key}) : super(key: key);
@@ -11,10 +14,19 @@ class HivePage extends GetView<HiveController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const BackButtonIcon(),
+          onPressed: () {
+            Get.back();
+          },
+          splashRadius: 20,
+        ),
+      ),
       body: Obx(
         () => AnimatedSwitcher(
           duration: const Duration(milliseconds: 300),
-          child: SafeArea(child: controller.currentPage),
+          child: controller.currentPage,
         ),
       ),
       bottomNavigationBar: Obx(() {
@@ -23,9 +35,9 @@ class HivePage extends GetView<HiveController> {
           onTap: controller.changePage,
           items: const [
             BottomNavigationBarItem(
-              icon: Icon(IconlyLight.message),
-              label: 'Chat',
-              activeIcon: Icon(IconlyBold.message),
+              icon: Icon(IconlyLight.voice),
+              label: 'Discussions',
+              activeIcon: Icon(IconlyBold.voice),
             ),
             BottomNavigationBarItem(
               icon: Icon(IconlyLight.work),
@@ -40,44 +52,55 @@ class HivePage extends GetView<HiveController> {
           ],
         );
       }),
-      floatingActionButton: Obx(
-        () => AnimatedScale(
-          scale: controller.activePageIndex.value == 1 ? 1.0 : 0.0,
-          duration: const Duration(milliseconds: 200),
-          child: FloatingActionButton(
-            onPressed: () {
-              showCustomBottomSheet(
-                child: Column(
-                  children: [
-                    CustomListTile(
-                      onTap: () {
-                        Get.back();
-                      },
-                      title: "Create Assignment",
-                      leading: const Icon(IconlyLight.document),
-                    ),
-                    CustomListTile(
-                      onTap: () {
-                        Get.back();
-                      },
-                      title: "Post a Question",
-                      leading: const Icon(IconlyLight.paper),
-                    ),
-                    CustomListTile(
-                      onTap: () {
-                        Get.back();
-                      },
-                      title: "Post a Material",
-                      leading: const Icon(IconlyLight.paper_plus),
-                    ),
-                  ],
-                ),
-              );
-            },
-            child: const Icon(Icons.add),
+      floatingActionButton: Obx(() {
+        return FloatingActionButton(
+          onPressed: () {
+            switch (controller.activePageIndex.value) {
+              case 0:
+                Get.to(
+                  () => const NewChatPage(),
+                  fullscreenDialog: true,
+                );
+
+                break;
+              case 1:
+                showCustomBottomSheet(
+                  height: Get.height * 0.18,
+                  child: Column(
+                    children: [
+                      CustomListTile(
+                        onTap: () {
+                          Get.back();
+                        },
+                        title: "Post a Question",
+                        leading: const Icon(IconlyLight.paper),
+                      ),
+                      CustomListTile(
+                        onTap: () {
+                          Get.back();
+                        },
+                        title: "Post a Material",
+                        leading: const Icon(IconlyLight.paper_plus),
+                      ),
+                    ],
+                  ),
+                );
+                break;
+              case 2:
+                Get.to(
+                  () => const InviteMemberPage(),
+                  fullscreenDialog: true,
+                );
+                break;
+              default:
+            }
+          },
+          child: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 300),
+            child: controller.currentIcon,
           ),
-        ),
-      ),
+        );
+      }),
     );
   }
 }
