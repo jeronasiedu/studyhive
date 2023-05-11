@@ -46,14 +46,16 @@ class SetupProfilePage extends GetView<SetupProfileController> {
               const Spacer(),
               SizedBox(
                 width: double.maxFinite,
-                child: Obx(() {
-                  return ElevatedButton(
-                    onPressed: controller.enableFinishButton.value ? controller.updateProfile : null,
-                    child: Text(
-                      'continue'.tr,
-                    ),
-                  ).withLoading(loading: controller.loading);
-                }),
+                child: Obx(
+                  () {
+                    return ElevatedButton(
+                      onPressed: controller.enableFinishButton.value ? controller.updateProfile : null,
+                      child: Text(
+                        'continue'.tr,
+                      ),
+                    ).withLoading(loading: controller.loading);
+                  },
+                ),
               )
             ],
           ),

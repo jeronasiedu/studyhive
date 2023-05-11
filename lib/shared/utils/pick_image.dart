@@ -17,6 +17,18 @@ Future<XFile?> pickImage({
   }
 }
 
+Future<XFile?> pickVideo({
+  ImageSource source = ImageSource.gallery,
+  Duration maxDuration = const Duration(minutes: 3),
+}) async {
+  try {
+    final pickedVideo = await ImagePicker().pickVideo(source: source, maxDuration: maxDuration);
+    return pickedVideo;
+  } on Exception catch (e) {
+    return null;
+  }
+}
+
 Future<CroppedFile?> cropImage({
   required String imagePath,
   String? title,

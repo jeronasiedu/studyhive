@@ -25,7 +25,7 @@ class HiveController extends GetxController {
 
   final List<Widget> _pages = [const DiscussionsPage(), const WorkPage(), const MembersPage()];
   final List<Widget> icons = [
-    const Icon(IconlyLight.message),
+    const Icon(IconlyLight.voice),
     const Icon(IconlyLight.work),
     const Icon(IconlyLight.user_1),
   ];

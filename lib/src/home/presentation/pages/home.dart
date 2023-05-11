@@ -14,6 +14,14 @@ class HomePage extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text(
+          "STUDY HIVE",
+          style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).colorScheme.primary,
+                fontSize: 18,
+              ),
+        ),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 5.0),
@@ -76,25 +84,9 @@ class HomePage extends GetView<HomeController> {
                   },
                   subtitle: "This is hive ${index + 1}",
                   title: hive.name,
-                  trailing: PopupMenuButton(
-                    tooltip: 'more',
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                    icon: const Icon(Icons.more_vert),
-                    onSelected: (value) {
-                      if (value == 0) {
-                      } else if (value == 1) {}
-                    },
-                    itemBuilder: (context) {
-                      return hive.createdBy == controller.user.uid
-                          ? [
-                              const PopupMenuItem(value: 0, child: Text('Share Hive')),
-                              const PopupMenuItem(value: 1, child: Text('Delete Hive')),
-                            ]
-                          : [
-                              const PopupMenuItem(value: 0, child: Text('Leave Hive')),
-                              const PopupMenuItem(value: 1, child: Text('Report Hive')),
-                            ];
-                    },
+                  trailing: Icon(
+                    IconlyLight.arrow_right_3,
+                    color: Get.theme.primaryColor,
                   ),
                 );
               },

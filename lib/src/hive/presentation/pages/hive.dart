@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 import 'package:studyhive/src/hive/presentation/manager/hive_controller.dart';
 import 'package:studyhive/src/hive/presentation/pages/invite.dart';
-import 'package:studyhive/src/hive/presentation/pages/new_chat.dart';
+import 'package:studyhive/src/hive/presentation/pages/new_discussion.dart';
 
 import '../../../../shared/ui/custom_bottomsheet.dart';
 import '../../../../shared/ui/custom_listtile.dart';
@@ -58,7 +58,7 @@ class HivePage extends GetView<HiveController> {
             switch (controller.activePageIndex.value) {
               case 0:
                 Get.to(
-                  () => const NewChatPage(),
+                  () => const NewDiscussionPage(),
                   fullscreenDialog: true,
                 );
 
