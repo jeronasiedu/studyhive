@@ -65,7 +65,7 @@ class HivePage extends GetView<HiveController> {
                 break;
               case 1:
                 showCustomBottomSheet(
-                  height: Get.height * 0.18,
+                  height: Get.height * 0.24,
                   child: Column(
                     children: [
                       CustomListTile(
@@ -81,6 +81,13 @@ class HivePage extends GetView<HiveController> {
                         },
                         title: "Post a Material",
                         leading: const Icon(IconlyLight.paper_plus),
+                      ),
+                      CustomListTile(
+                        onTap: () {
+                          Get.back();
+                        },
+                        title: "Create a Poll",
+                        leading: const Icon(IconlyLight.chart),
                       ),
                     ],
                   ),

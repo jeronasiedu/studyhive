@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
+import 'package:ionicons/ionicons.dart';
 import 'package:skeletons/skeletons.dart';
 import 'package:studyhive/routes/app_pages.dart';
 import 'package:studyhive/shared/extensions/strings.dart';
@@ -99,7 +100,7 @@ class HomePage extends GetView<HomeController> {
         onPressed: () {
           Get.toNamed(AppRoutes.createHive);
         },
-        child: const Icon(IconlyLight.plus),
+        child: const Icon(Ionicons.add),
       ),
     );
   }
