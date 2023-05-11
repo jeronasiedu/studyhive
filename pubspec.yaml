@@ -38,7 +38,7 @@ dependencies:
   flutter_animate: ^4.1.1+1
   skeletons: ^0.0.3
   rxdart: ^0.27.7
-  device_preview: ^1.1.0
+  #  device_preview: ^1.1.0
   firebase_crashlytics: ^3.2.0
 
 dev_dependencies:

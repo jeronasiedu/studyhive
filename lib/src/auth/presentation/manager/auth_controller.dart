@@ -9,7 +9,7 @@ import '../../../../shared/network/network.dart';
 import '../../../../shared/ui/snackbars.dart';
 import '../../../profile/domain/entities/profile.dart';
 import '../../domain/repositories/auth_repository.dart';
-import '../pages/verify_phone.dart';
+import '../pages/verify_otp.dart';
 
 class AuthController extends GetxController {
   bool enableContinueButton = false;
@@ -50,14 +50,20 @@ class AuthController extends GetxController {
           otpController.setText(credential.smsCode!);
         },
         verificationFailed: (FirebaseAuthException e) {
+          gettingOtp.value = false;
           if (e.code == 'invalid-phone-number') {
-            gettingOtp.value = false;
             showErrorSnackbar(message: 'invalid_phone_number'.tr);
+          }
+          if (e.code == 'too-many-requests') {
+            showErrorSnackbar(message: 'too_many_requests'.tr);
+          }
+          if (e.code == 'invalid-verification-code') {
+            showErrorSnackbar(message: 'invalid_verification_code'.tr);
           }
         },
         codeSent: (String verificationId, int? resendToken) {
           gettingOtp.value = false;
-          Get.to(() => VerifyPhone(
+          Get.to(() => VerifyOtp(
                 verificationId: verificationId,
                 resendToken: resendToken,
               ));
@@ -71,26 +77,36 @@ class AuthController extends GetxController {
   }
 
   Future<void> verifyOtp({required String verificationId}) async {
-    isVerifying.value = true;
-    PhoneAuthCredential credential =
-        PhoneAuthProvider.credential(verificationId: verificationId, smsCode: otpController.text);
+    try {
+      isVerifying.value = true;
+      PhoneAuthCredential credential =
+          PhoneAuthProvider.credential(verificationId: verificationId, smsCode: otpController.text);
 
-    final user = await FirebaseAuth.instance.signInWithCredential(credential);
-    final results = await _authRepository.continueWithPhone(Profile.empty().copyWith(
-      phoneNumber: user.user!.phoneNumber,
-      id: user.user!.uid,
-    ));
-    results.fold((failure) {
+      final user = await FirebaseAuth.instance.signInWithCredential(credential);
+      final results = await _authRepository.continueWithPhone(Profile.empty().copyWith(
+        phoneNumber: user.user!.phoneNumber,
+        id: user.user!.uid,
+      ));
+      results.fold((failure) {
+        isVerifying.value = false;
+        showErrorSnackbar(message: failure.message);
+      }, (exists) {
+        isVerifying.value = false;
+        if (exists) {
+          Get.offAllNamed(AppRoutes.home);
+        } else {
+          Get.offAllNamed(AppRoutes.setupProfile);
+        }
+      });
+    } on FirebaseAuthException catch (e) {
       isVerifying.value = false;
-      showErrorSnackbar(message: failure.message);
-    }, (exists) {
-      isVerifying.value = false;
-      if (exists) {
-        Get.offAllNamed(AppRoutes.home);
-      } else {
-        Get.offAllNamed(AppRoutes.setupProfile);
+      if (e.code == 'invalid-verification-code') {
+        showErrorSnackbar(message: 'invalid_verification_code'.tr);
       }
-    });
+      if (e.code == 'too-many-requests') {
+        showErrorSnackbar(message: 'too_many_requests'.tr);
+      }
+    }
   }
 
   Future<void> resendOtp({required String phoneNumber, int? resendToken}) async {
@@ -100,8 +116,15 @@ class AuthController extends GetxController {
         otpController.setText(credential.smsCode!);
       },
       verificationFailed: (FirebaseAuthException e) {
+        gettingOtp.value = false;
         if (e.code == 'invalid-phone-number') {
           showErrorSnackbar(message: 'invalid_phone_number'.tr);
+        }
+        if (e.code == 'too-many-requests') {
+          showErrorSnackbar(message: 'too_many_requests'.tr);
+        }
+        if (e.code == 'invalid-verification-code') {
+          showErrorSnackbar(message: 'invalid_verification_code'.tr);
         }
       },
       codeSent: (String verificationId, int? resendToken) {

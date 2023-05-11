@@ -30,16 +30,19 @@ class SetupProfilePage extends GetView<SetupProfileController> {
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
               ),
-              TextFormField(
-                autofocus: true,
-                controller: controller.nameController,
-                keyboardType: TextInputType.name,
-                maxLength: 20,
-                decoration: InputDecoration(
-                  hintText: 'full_name'.tr,
-                  contentPadding: inputPadding,
-                ),
-              ),
+              Obx(() {
+                return TextFormField(
+                  autofocus: true,
+                  controller: controller.nameController,
+                  keyboardType: TextInputType.name,
+                  enabled: !controller.loading.value,
+                  maxLength: 20,
+                  decoration: InputDecoration(
+                    hintText: 'full_name'.tr,
+                    contentPadding: inputPadding,
+                  ),
+                );
+              }),
               const Spacer(),
               SizedBox(
                 width: double.maxFinite,

@@ -61,15 +61,18 @@ class CreateHivePage extends GetView<CreateHiveController> {
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 20.0),
-              child: TextFormField(
-                controller: controller.nameController,
-                autofocus: true,
-                decoration: const InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(horizontal: 20),
-                  labelText: "Name",
-                  hintText: "Study Buddies",
-                ),
-              ),
+              child: Obx(() {
+                return TextFormField(
+                  controller: controller.nameController,
+                  autofocus: true,
+                  enabled: !controller.loading.value,
+                  decoration: const InputDecoration(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                    labelText: "Name",
+                    hintText: "Study Buddies",
+                  ),
+                );
+              }),
             ),
             Padding(
                 padding: const EdgeInsets.only(bottom: 5),

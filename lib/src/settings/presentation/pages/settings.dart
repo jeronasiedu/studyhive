@@ -134,7 +134,7 @@ class SettingsPage extends GetView<SettingsController> {
               CustomListTile(
                 onTap: () {
                   showCustomBottomSheet(
-                    height: Get.height * 0.14,
+                    height: Get.height * 0.2,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -149,13 +149,21 @@ class SettingsPage extends GetView<SettingsController> {
                         ),
                         SizedBox(
                           width: double.infinity,
-                          child: ElevatedButton.icon(
+                          child: ElevatedButton(
                             onPressed: () {
                               Get.back();
                               controller.signOut();
                             },
-                            icon: const Icon(IconlyLight.logout),
-                            label: Text("logout".tr),
+                            child: Text("logout".tr),
+                          ),
+                        ),
+                        SizedBox(
+                          width: double.infinity,
+                          child: OutlinedButton(
+                            onPressed: () {
+                              Get.back();
+                            },
+                            child: Text("cancel".tr),
                           ),
                         ),
                       ],

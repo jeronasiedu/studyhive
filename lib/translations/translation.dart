@@ -49,6 +49,9 @@ class Localization extends Translations {
           "invite_a_friend": "Invite a friend",
           "share_studyhive_with_your_friends": "Share Study Hive with your friends",
           "logout_prompt": "Are you sure you want to log out?",
+          'cancel': 'Cancel',
+          'too_many_requests': 'Too many requests. Please try again later.',
+          'invalid_verification_code': 'Invalid verification code.',
         },
         'fr_FR': {
           'welcome': 'Bienvenue sur Study Hive !',
@@ -96,6 +99,9 @@ class Localization extends Translations {
           "invite_a_friend": "Inviter un ami",
           "share_studyhive_with_your_friends": "Partagez Study Hive avec vos amis",
           "logout_prompt": "Êtes-vous sûr de vouloir vous déconnecter ?",
+          'cancel': 'Annuler',
+          'too_many_requests': 'Trop de requêtes',
+          'invalid_verification_code': 'Code de vérification invalide.',
         },
       };
 }

@@ -95,9 +95,6 @@ class ProfilePage extends GetView<ProfileController> {
                   leading: const Icon(
                     IconlyLight.call,
                   ),
-                  trailing: const Icon(
-                    IconlyLight.edit,
-                  ),
                 ),
               if (controller.profile.email != null)
                 CustomListTile(
@@ -105,7 +102,7 @@ class ProfilePage extends GetView<ProfileController> {
                   title: "Email",
                   subtitle: controller.profile.email!,
                   leading: const Icon(
-                    IconlyLight.call,
+                    IconlyLight.message,
                   ),
                 ),
             ],

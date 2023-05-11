@@ -36,29 +36,32 @@ class PhoneAuthPage extends GetView<AuthController> {
                 ),
                 Form(
                   key: controller.formKey,
-                  child: InternationalPhoneNumberInput(
-                    onInputValidated: (value) {
-                      controller.enableContinueButton = value;
-                      controller.update();
-                    },
-                    onInputChanged: controller.onPhoneNumberChanged,
-                    keyboardType: TextInputType.phone,
-                    formatInput: true,
-                    autoFocus: true,
-                    countries: const ['GH', 'GB', 'NG'],
-                    selectorConfig: const SelectorConfig(
-                      selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
-                      useEmoji: true,
-                    ),
-                    inputDecoration: InputDecoration(
-                      hintText: 'phone_number'.tr,
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 20),
-                    ),
-                    searchBoxDecoration: InputDecoration(
-                      hintText: 'search_country'.tr,
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 20),
-                    ),
-                  ),
+                  child: Obx(() {
+                    return InternationalPhoneNumberInput(
+                      onInputValidated: (value) {
+                        controller.enableContinueButton = value;
+                        controller.update();
+                      },
+                      isEnabled: !controller.gettingOtp.value,
+                      onInputChanged: controller.onPhoneNumberChanged,
+                      keyboardType: TextInputType.phone,
+                      formatInput: true,
+                      autoFocus: true,
+                      countries: const ['GH', 'GB', 'NG'],
+                      selectorConfig: const SelectorConfig(
+                        selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
+                        useEmoji: true,
+                      ),
+                      inputDecoration: InputDecoration(
+                        hintText: 'phone_number'.tr,
+                        contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+                      ),
+                      searchBoxDecoration: InputDecoration(
+                        hintText: 'search_country'.tr,
+                        contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+                      ),
+                    );
+                  }),
                 ),
                 const Spacer(),
                 SizedBox(

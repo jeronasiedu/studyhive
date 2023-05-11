@@ -30,7 +30,7 @@ class Spinner extends StatelessWidget {
         child: CircularProgressIndicator.adaptive(
           valueColor: AlwaysStoppedAnimation<Color>(color ?? Get.theme.colorScheme.primary),
           strokeWidth: 2.5,
-          backgroundColor: Platform.isIOS ? Get.theme.colorScheme.secondary : null,
+          backgroundColor: Platform.isIOS ? Get.theme.colorScheme.primary : null,
           value: null,
           semanticsLabel: 'Loading',
         ),

@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
@@ -19,19 +18,14 @@ void main() async {
   await initServices();
   runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
+    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
     final profileLocalDb = Get.find<ProfileLocalDatabase>();
     final bool isAuthenticated = await profileLocalDb.authStatus();
     final bool isProfileSetup = await profileLocalDb.finishedSetup();
-    runApp(DevicePreview(
-      enabled: false,
-      builder: (context) => MyApp(
-        isAuthenticated: isAuthenticated,
-        isProfileSetup: isProfileSetup,
-      ),
+    runApp(MyApp(
+      isAuthenticated: isAuthenticated,
+      isProfileSetup: isProfileSetup,
     ));
   }, (error, stack) {
     print('runZonedGuarded: Caught error in my root zone. $error');
@@ -62,7 +56,6 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       useInheritedMediaQuery: true,
       locale: Get.deviceLocale,
-      builder: DevicePreview.appBuilder,
       translations: Localization(),
       title: 'Study Hive',
       theme: lightTheme,

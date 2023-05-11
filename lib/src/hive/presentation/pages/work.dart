@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../generated/assets.dart';
-import '../../../../shared/ui/empty_page.dart';
+import '../../../../shared/ui/empty_state.dart';
 
 class WorkPage extends StatelessWidget {
   const WorkPage({Key? key}) : super(key: key);

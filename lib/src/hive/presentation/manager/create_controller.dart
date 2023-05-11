@@ -37,8 +37,6 @@ class CreateHiveController extends GetxController {
       if (croppedImage != null) {
         hiveProfile.value = croppedImage.path;
       }
-    } else {
-      showErrorSnackbar(message: "No image selected");
     }
   }
 
