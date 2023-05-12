@@ -4,9 +4,11 @@ import 'package:iconly/iconly.dart';
 import 'package:studyhive/src/hive/presentation/manager/hive_controller.dart';
 import 'package:studyhive/src/hive/presentation/pages/invite.dart';
 import 'package:studyhive/src/hive/presentation/pages/new_discussion.dart';
+import 'package:studyhive/src/hive/presentation/pages/new_poll.dart';
 
 import '../../../../shared/ui/custom_bottomsheet.dart';
 import '../../../../shared/ui/custom_listtile.dart';
+import 'new_question.dart';
 
 class HivePage extends GetView<HiveController> {
   const HivePage({Key? key}) : super(key: key);
@@ -71,8 +73,9 @@ class HivePage extends GetView<HiveController> {
                       CustomListTile(
                         onTap: () {
                           Get.back();
+                          Get.to(() => const NewQuestion(), fullscreenDialog: true);
                         },
-                        title: "Post a Question",
+                        title: "Ask a Question",
                         leading: const Icon(IconlyLight.paper),
                       ),
                       CustomListTile(
@@ -85,6 +88,7 @@ class HivePage extends GetView<HiveController> {
                       CustomListTile(
                         onTap: () {
                           Get.back();
+                          Get.to(() => const NewPoll(), fullscreenDialog: true);
                         },
                         title: "Create a Poll",
                         leading: const Icon(IconlyLight.chart),
