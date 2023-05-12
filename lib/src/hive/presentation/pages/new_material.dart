@@ -3,8 +3,8 @@ import 'package:iconly/iconly.dart';
 
 import '../../../../shared/theme/theme.dart';
 
-class NewQuestion extends StatelessWidget {
-  const NewQuestion({Key? key}) : super(key: key);
+class NewMaterial extends StatelessWidget {
+  const NewMaterial({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class NewQuestion extends StatelessWidget {
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 15.0),
-            child: ElevatedButton(onPressed: () {}, child: const Text("Ask")),
+            child: ElevatedButton(onPressed: () {}, child: const Text("Share")),
           ),
         ],
       ),
@@ -32,31 +32,16 @@ class NewQuestion extends StatelessWidget {
             child: TextFormField(
               keyboardType: TextInputType.multiline,
               maxLines: null,
-              maxLength: 400,
+              maxLength: 100,
               minLines: 1,
               decoration: const InputDecoration(
                 contentPadding: inputPadding,
-                hintText: "Ask your question...",
+                hintText: "Describe your material...",
               ),
             ),
           ),
-          ListTile(
-            onTap: () {},
-            title: Text("Short Answer",
-                style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                      fontWeight: FontWeight.bold,
-                    )),
-            subtitle: Text(
-              "Question Type",
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-            trailing: const Icon(
-              IconlyLight.arrow_down_2,
-              size: 17,
-            ),
-          ),
           Padding(
-            padding: const EdgeInsets.only(bottom: 10.0),
+            padding: const EdgeInsets.only(bottom: 8.0),
             child: ListTile(
               onTap: () {},
               title: Text("Not Set",

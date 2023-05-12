@@ -4,6 +4,7 @@ import 'package:iconly/iconly.dart';
 import 'package:studyhive/src/hive/presentation/manager/hive_controller.dart';
 import 'package:studyhive/src/hive/presentation/pages/invite.dart';
 import 'package:studyhive/src/hive/presentation/pages/new_discussion.dart';
+import 'package:studyhive/src/hive/presentation/pages/new_material.dart';
 import 'package:studyhive/src/hive/presentation/pages/new_poll.dart';
 
 import '../../../../shared/ui/custom_bottomsheet.dart';
@@ -81,8 +82,9 @@ class HivePage extends GetView<HiveController> {
                       CustomListTile(
                         onTap: () {
                           Get.back();
+                          Get.to(() => const NewMaterial(), fullscreenDialog: true);
                         },
-                        title: "Post a Material",
+                        title: "Share a Material",
                         leading: const Icon(IconlyLight.paper_plus),
                       ),
                       CustomListTile(

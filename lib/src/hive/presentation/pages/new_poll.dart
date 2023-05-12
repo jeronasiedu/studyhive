@@ -32,6 +32,7 @@ class NewPoll extends GetView<PollController> {
           Padding(
             padding: const EdgeInsets.only(bottom: 8.0),
             child: TextFormField(
+              controller: controller.pollTextController,
               keyboardType: TextInputType.multiline,
               maxLines: null,
               maxLength: 200,
