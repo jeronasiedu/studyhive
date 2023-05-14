@@ -3,9 +3,11 @@ import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:skeletons/skeletons.dart';
+import 'package:studyhive/generated/assets.dart';
 import 'package:studyhive/routes/app_pages.dart';
 import 'package:studyhive/shared/extensions/strings.dart';
 import 'package:studyhive/shared/ui/custom_listtile.dart';
+import 'package:studyhive/shared/ui/empty_state.dart';
 import 'package:studyhive/src/home/presentation/manager/home_controller.dart';
 
 class HomePage extends GetView<HomeController> {
@@ -68,6 +70,13 @@ class HomePage extends GetView<HomeController> {
                   );
                 },
               ),
+            );
+          }
+          if (snapshot.hasData && snapshot.data!.isEmpty) {
+            return const EmptyState(
+              text: "Start by creating your first Hive",
+              asset: Assets.noHive,
+              width: 300,
             );
           }
 

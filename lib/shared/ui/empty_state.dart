@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 class EmptyState extends StatelessWidget {
-  const EmptyState({super.key, required this.text, required this.asset});
+  const EmptyState({super.key, required this.text, required this.asset, this.width});
 
   final String text;
   final String asset;
+  final double? width;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class EmptyState extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 8.0),
             child: Image.asset(
               asset,
-              width: 250,
+              width: width ?? 250,
             ),
           ),
           Text(
