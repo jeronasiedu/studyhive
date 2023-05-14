@@ -1,4 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:studyhive/src/hive/domain/entities/media.dart';
+import 'package:studyhive/src/hive/domain/entities/topic.dart';
 
 part 'message.freezed.dart';
 part 'message.g.dart';
@@ -12,8 +14,20 @@ class Message with _$Message {
     /// ID of the user who sent the message
     required String senderId,
 
-    /// Content of the message
-    required String content,
+    /// Text of the message
+    String? content,
+
+    /// Media attached to the message
+    @Default([]) List<Media> media,
+
+    /// Question type if the message is a question
+    QuestionType? questionType,
+
+    /// Topic object if the message is a question or a material
+    Topic? topic,
+
+    /// List of options if the message is a poll
+    @Default([]) List<String> options,
 
     /// The date the message was sent
     required DateTime sentAt,
@@ -26,9 +40,16 @@ class Message with _$Message {
 }
 
 enum MessageType {
-  text,
-  image,
-  video,
-  audio,
-  file,
+  discussion,
+  question,
+  announcement,
+  poll,
+  material,
+}
+
+enum QuestionType {
+  multipleChoice,
+  trueFalse,
+  shortAnswer,
+  longAnswer,
 }

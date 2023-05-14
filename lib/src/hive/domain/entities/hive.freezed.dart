@@ -45,6 +45,9 @@ mixin _$Hive {
   /// conversations of the Hive
   List<Message> get conversations => throw _privateConstructorUsedError;
 
+  /// Admins of the Hive
+  List<String> get admins => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $HiveCopyWith<Hive> get copyWith => throw _privateConstructorUsedError;
@@ -64,7 +67,8 @@ abstract class $HiveCopyWith<$Res> {
       String createdBy,
       DateTime createdAt,
       DateTime updatedAt,
-      List<Message> conversations});
+      List<Message> conversations,
+      List<String> admins});
 }
 
 /// @nodoc
@@ -89,6 +93,7 @@ class _$HiveCopyWithImpl<$Res, $Val extends Hive>
     Object? createdAt = null,
     Object? updatedAt = null,
     Object? conversations = null,
+    Object? admins = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -127,6 +132,10 @@ class _$HiveCopyWithImpl<$Res, $Val extends Hive>
           ? _value.conversations
           : conversations // ignore: cast_nullable_to_non_nullable
               as List<Message>,
+      admins: null == admins
+          ? _value.admins
+          : admins // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -146,7 +155,8 @@ abstract class _$$_HiveCopyWith<$Res> implements $HiveCopyWith<$Res> {
       String createdBy,
       DateTime createdAt,
       DateTime updatedAt,
-      List<Message> conversations});
+      List<Message> conversations,
+      List<String> admins});
 }
 
 /// @nodoc
@@ -167,6 +177,7 @@ class __$$_HiveCopyWithImpl<$Res> extends _$HiveCopyWithImpl<$Res, _$_Hive>
     Object? createdAt = null,
     Object? updatedAt = null,
     Object? conversations = null,
+    Object? admins = null,
   }) {
     return _then(_$_Hive(
       id: null == id
@@ -205,6 +216,10 @@ class __$$_HiveCopyWithImpl<$Res> extends _$HiveCopyWithImpl<$Res, _$_Hive>
           ? _value.conversations
           : conversations // ignore: cast_nullable_to_non_nullable
               as List<Message>,
+      admins: null == admins
+          ? _value.admins
+          : admins // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -221,7 +236,8 @@ class _$_Hive implements _Hive {
       required this.createdBy,
       required this.createdAt,
       required this.updatedAt,
-      this.conversations = const []});
+      this.conversations = const [],
+      this.admins = const []});
 
   factory _$_Hive.fromJson(Map<String, dynamic> json) => _$$_HiveFromJson(json);
 
@@ -261,9 +277,14 @@ class _$_Hive implements _Hive {
   @JsonKey()
   final List<Message> conversations;
 
+  /// Admins of the Hive
+  @override
+  @JsonKey()
+  final List<String> admins;
+
   @override
   String toString() {
-    return 'Hive(id: $id, name: $name, description: $description, photoUrl: $photoUrl, members: $members, createdBy: $createdBy, createdAt: $createdAt, updatedAt: $updatedAt, conversations: $conversations)';
+    return 'Hive(id: $id, name: $name, description: $description, photoUrl: $photoUrl, members: $members, createdBy: $createdBy, createdAt: $createdAt, updatedAt: $updatedAt, conversations: $conversations, admins: $admins)';
   }
 
   @override
@@ -285,7 +306,8 @@ class _$_Hive implements _Hive {
             (identical(other.updatedAt, updatedAt) ||
                 other.updatedAt == updatedAt) &&
             const DeepCollectionEquality()
-                .equals(other.conversations, conversations));
+                .equals(other.conversations, conversations) &&
+            const DeepCollectionEquality().equals(other.admins, admins));
   }
 
   @JsonKey(ignore: true)
@@ -300,7 +322,8 @@ class _$_Hive implements _Hive {
       createdBy,
       createdAt,
       updatedAt,
-      const DeepCollectionEquality().hash(conversations));
+      const DeepCollectionEquality().hash(conversations),
+      const DeepCollectionEquality().hash(admins));
 
   @JsonKey(ignore: true)
   @override
@@ -326,7 +349,8 @@ abstract class _Hive implements Hive {
       required final String createdBy,
       required final DateTime createdAt,
       required final DateTime updatedAt,
-      final List<Message> conversations}) = _$_Hive;
+      final List<Message> conversations,
+      final List<String> admins}) = _$_Hive;
 
   factory _Hive.fromJson(Map<String, dynamic> json) = _$_Hive.fromJson;
 
@@ -362,6 +386,10 @@ abstract class _Hive implements Hive {
 
   /// conversations of the Hive
   List<Message> get conversations;
+  @override
+
+  /// Admins of the Hive
+  List<String> get admins;
   @override
   @JsonKey(ignore: true)
   _$$_HiveCopyWith<_$_Hive> get copyWith => throw _privateConstructorUsedError;

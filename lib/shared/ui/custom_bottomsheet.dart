@@ -42,3 +42,24 @@ showCustomBottomSheet({
     elevation: 0,
   );
 }
+
+// show animated bottomsheet
+showAnimatedBottomSheet() {
+  return BottomSheet(
+    onClosing: () {},
+    backgroundColor: Colors.red,
+    constraints: BoxConstraints(
+      maxHeight: 200,
+      minHeight: 200,
+      minWidth: Get.width,
+      maxWidth: Get.width,
+    ),
+    builder: (context) => Container(
+        height: 200,
+        width: 200,
+        color: Colors.red,
+        child: const Center(
+          child: Text("Test"),
+        )),
+  );
+}

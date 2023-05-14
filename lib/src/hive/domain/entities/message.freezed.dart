@@ -26,8 +26,20 @@ mixin _$Message {
   /// ID of the user who sent the message
   String get senderId => throw _privateConstructorUsedError;
 
-  /// Content of the message
-  String get content => throw _privateConstructorUsedError;
+  /// Text of the message
+  String? get content => throw _privateConstructorUsedError;
+
+  /// Media attached to the message
+  List<Media> get media => throw _privateConstructorUsedError;
+
+  /// Question type if the message is a question
+  QuestionType? get questionType => throw _privateConstructorUsedError;
+
+  /// Topic object if the message is a question or a material
+  Topic? get topic => throw _privateConstructorUsedError;
+
+  /// List of options if the message is a poll
+  List<String> get options => throw _privateConstructorUsedError;
 
   /// The date the message was sent
   DateTime get sentAt => throw _privateConstructorUsedError;
@@ -48,9 +60,15 @@ abstract class $MessageCopyWith<$Res> {
   $Res call(
       {String id,
       String senderId,
-      String content,
+      String? content,
+      List<Media> media,
+      QuestionType? questionType,
+      Topic? topic,
+      List<String> options,
       DateTime sentAt,
       MessageType type});
+
+  $TopicCopyWith<$Res>? get topic;
 }
 
 /// @nodoc
@@ -68,7 +86,11 @@ class _$MessageCopyWithImpl<$Res, $Val extends Message>
   $Res call({
     Object? id = null,
     Object? senderId = null,
-    Object? content = null,
+    Object? content = freezed,
+    Object? media = null,
+    Object? questionType = freezed,
+    Object? topic = freezed,
+    Object? options = null,
     Object? sentAt = null,
     Object? type = null,
   }) {
@@ -81,10 +103,26 @@ class _$MessageCopyWithImpl<$Res, $Val extends Message>
           ? _value.senderId
           : senderId // ignore: cast_nullable_to_non_nullable
               as String,
-      content: null == content
+      content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      media: null == media
+          ? _value.media
+          : media // ignore: cast_nullable_to_non_nullable
+              as List<Media>,
+      questionType: freezed == questionType
+          ? _value.questionType
+          : questionType // ignore: cast_nullable_to_non_nullable
+              as QuestionType?,
+      topic: freezed == topic
+          ? _value.topic
+          : topic // ignore: cast_nullable_to_non_nullable
+              as Topic?,
+      options: null == options
+          ? _value.options
+          : options // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       sentAt: null == sentAt
           ? _value.sentAt
           : sentAt // ignore: cast_nullable_to_non_nullable
@@ -94,6 +132,18 @@ class _$MessageCopyWithImpl<$Res, $Val extends Message>
           : type // ignore: cast_nullable_to_non_nullable
               as MessageType,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TopicCopyWith<$Res>? get topic {
+    if (_value.topic == null) {
+      return null;
+    }
+
+    return $TopicCopyWith<$Res>(_value.topic!, (value) {
+      return _then(_value.copyWith(topic: value) as $Val);
+    });
   }
 }
 
@@ -107,9 +157,16 @@ abstract class _$$_MessageCopyWith<$Res> implements $MessageCopyWith<$Res> {
   $Res call(
       {String id,
       String senderId,
-      String content,
+      String? content,
+      List<Media> media,
+      QuestionType? questionType,
+      Topic? topic,
+      List<String> options,
       DateTime sentAt,
       MessageType type});
+
+  @override
+  $TopicCopyWith<$Res>? get topic;
 }
 
 /// @nodoc
@@ -124,7 +181,11 @@ class __$$_MessageCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? senderId = null,
-    Object? content = null,
+    Object? content = freezed,
+    Object? media = null,
+    Object? questionType = freezed,
+    Object? topic = freezed,
+    Object? options = null,
     Object? sentAt = null,
     Object? type = null,
   }) {
@@ -137,10 +198,26 @@ class __$$_MessageCopyWithImpl<$Res>
           ? _value.senderId
           : senderId // ignore: cast_nullable_to_non_nullable
               as String,
-      content: null == content
+      content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      media: null == media
+          ? _value.media
+          : media // ignore: cast_nullable_to_non_nullable
+              as List<Media>,
+      questionType: freezed == questionType
+          ? _value.questionType
+          : questionType // ignore: cast_nullable_to_non_nullable
+              as QuestionType?,
+      topic: freezed == topic
+          ? _value.topic
+          : topic // ignore: cast_nullable_to_non_nullable
+              as Topic?,
+      options: null == options
+          ? _value.options
+          : options // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       sentAt: null == sentAt
           ? _value.sentAt
           : sentAt // ignore: cast_nullable_to_non_nullable
@@ -159,7 +236,11 @@ class _$_Message implements _Message {
   const _$_Message(
       {required this.id,
       required this.senderId,
-      required this.content,
+      this.content,
+      this.media = const [],
+      this.questionType,
+      this.topic,
+      this.options = const [],
       required this.sentAt,
       required this.type});
 
@@ -174,9 +255,27 @@ class _$_Message implements _Message {
   @override
   final String senderId;
 
-  /// Content of the message
+  /// Text of the message
   @override
-  final String content;
+  final String? content;
+
+  /// Media attached to the message
+  @override
+  @JsonKey()
+  final List<Media> media;
+
+  /// Question type if the message is a question
+  @override
+  final QuestionType? questionType;
+
+  /// Topic object if the message is a question or a material
+  @override
+  final Topic? topic;
+
+  /// List of options if the message is a poll
+  @override
+  @JsonKey()
+  final List<String> options;
 
   /// The date the message was sent
   @override
@@ -188,7 +287,7 @@ class _$_Message implements _Message {
 
   @override
   String toString() {
-    return 'Message(id: $id, senderId: $senderId, content: $content, sentAt: $sentAt, type: $type)';
+    return 'Message(id: $id, senderId: $senderId, content: $content, media: $media, questionType: $questionType, topic: $topic, options: $options, sentAt: $sentAt, type: $type)';
   }
 
   @override
@@ -200,14 +299,28 @@ class _$_Message implements _Message {
             (identical(other.senderId, senderId) ||
                 other.senderId == senderId) &&
             (identical(other.content, content) || other.content == content) &&
+            const DeepCollectionEquality().equals(other.media, media) &&
+            (identical(other.questionType, questionType) ||
+                other.questionType == questionType) &&
+            (identical(other.topic, topic) || other.topic == topic) &&
+            const DeepCollectionEquality().equals(other.options, options) &&
             (identical(other.sentAt, sentAt) || other.sentAt == sentAt) &&
             (identical(other.type, type) || other.type == type));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, senderId, content, sentAt, type);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      senderId,
+      content,
+      const DeepCollectionEquality().hash(media),
+      questionType,
+      topic,
+      const DeepCollectionEquality().hash(options),
+      sentAt,
+      type);
 
   @JsonKey(ignore: true)
   @override
@@ -227,7 +340,11 @@ abstract class _Message implements Message {
   const factory _Message(
       {required final String id,
       required final String senderId,
-      required final String content,
+      final String? content,
+      final List<Media> media,
+      final QuestionType? questionType,
+      final Topic? topic,
+      final List<String> options,
       required final DateTime sentAt,
       required final MessageType type}) = _$_Message;
 
@@ -243,8 +360,24 @@ abstract class _Message implements Message {
   String get senderId;
   @override
 
-  /// Content of the message
-  String get content;
+  /// Text of the message
+  String? get content;
+  @override
+
+  /// Media attached to the message
+  List<Media> get media;
+  @override
+
+  /// Question type if the message is a question
+  QuestionType? get questionType;
+  @override
+
+  /// Topic object if the message is a question or a material
+  Topic? get topic;
+  @override
+
+  /// List of options if the message is a poll
+  List<String> get options;
   @override
 
   /// The date the message was sent

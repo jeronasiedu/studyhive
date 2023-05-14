@@ -70,6 +70,7 @@ class CreateHiveController extends GetxController {
       createdAt: DateTime.now(),
       updatedAt: DateTime.now(),
       members: [profile.id],
+      admins: [profile.id],
       photoUrl: downloadUrl,
       conversations: [],
     );

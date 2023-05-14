@@ -31,6 +31,9 @@ class Hive with _$Hive {
 
     /// conversations of the Hive
     @Default([]) List<Message> conversations,
+
+    /// Admins of the Hive
+    @Default([]) List<String> admins,
   }) = _Hive;
 
   factory Hive.fromJson(Map<String, dynamic> json) => _$HiveFromJson(json);

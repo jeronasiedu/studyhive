@@ -22,6 +22,10 @@ _$_Hive _$$_HiveFromJson(Map<String, dynamic> json) => _$_Hive(
               ?.map((e) => Message.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
+      admins: (json['admins'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$_HiveToJson(_$_Hive instance) => <String, dynamic>{
@@ -34,4 +38,5 @@ Map<String, dynamic> _$$_HiveToJson(_$_Hive instance) => <String, dynamic>{
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
       'conversations': instance.conversations,
+      'admins': instance.admins,
     };
