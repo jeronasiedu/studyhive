@@ -9,7 +9,7 @@ part of 'message.dart';
 _$_Message _$$_MessageFromJson(Map<String, dynamic> json) => _$_Message(
       id: json['id'] as String,
       senderId: json['senderId'] as String,
-      content: json['content'] as String?,
+      text: json['text'] as String?,
       media: (json['media'] as List<dynamic>?)
               ?.map((e) => Media.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -31,7 +31,7 @@ Map<String, dynamic> _$$_MessageToJson(_$_Message instance) =>
     <String, dynamic>{
       'id': instance.id,
       'senderId': instance.senderId,
-      'content': instance.content,
+      'text': instance.text,
       'media': instance.media,
       'questionType': _$QuestionTypeEnumMap[instance.questionType],
       'topic': instance.topic,
@@ -53,4 +53,5 @@ const _$MessageTypeEnumMap = {
   MessageType.announcement: 'announcement',
   MessageType.poll: 'poll',
   MessageType.material: 'material',
+  MessageType.text: 'text',
 };

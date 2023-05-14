@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../shared/utils/pick_file.dart';
+
 class PollController extends GetxController {
   final optionControllers = <TextEditingController>[].obs;
   final pollTextController = TextEditingController();
@@ -21,6 +23,21 @@ class PollController extends GetxController {
 
   void removeOption(int index) {
     optionControllers.removeAt(index);
+  }
+
+  Future<void> chooseImage() async {
+    final results = await pickFile(option: FileTypeOption.image, dialogTitle: "Choose Image");
+    if (results != null) {}
+  }
+
+  Future<void> chooseVideo() async {
+    final results = await pickFile(option: FileTypeOption.video, dialogTitle: "Choose Video");
+    if (results != null) {}
+  }
+
+  Future<void> chooseDocument() async {
+    final results = await pickFile(option: FileTypeOption.document, dialogTitle: "Choose Document");
+    if (results != null) {}
   }
 
   @override

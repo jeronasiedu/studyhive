@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:studyhive/shared/error/failure.dart';
 import 'package:studyhive/src/hive/domain/entities/hive.dart';
+import 'package:studyhive/src/hive/domain/entities/message.dart';
 
 abstract class HiveRepository {
   /// Returns a list of all the [Hive]s
@@ -23,4 +24,7 @@ abstract class HiveRepository {
 
   /// Returns details of a [Hive]
   Future<Either<Failure, Stream<Hive>>> details(String hiveId);
+
+  /// Post a message to a [Hive]
+  Future<Either<Failure, String>> postMessage({required String hiveId, required Message message});
 }

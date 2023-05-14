@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:studyhive/src/profile/data/remote/data_sources/profile_remote_database.dart';
 
 import '../../../domain/entities/hive.dart';
+import '../../../domain/entities/message.dart';
 
 abstract class HiveRemoteDatabase {
   /// Returns a list of all the [Hive]s
@@ -24,6 +25,9 @@ abstract class HiveRemoteDatabase {
 
   /// Returns details of a [Hive]
   Stream<Hive> details(String hiveId);
+
+  /// Post a message to a [Hive]
+  Future<String> postMessage({required String hiveId, required Message message});
 }
 
 class HiveRemoteDatabaseImpl implements HiveRemoteDatabase {
@@ -82,5 +86,13 @@ class HiveRemoteDatabaseImpl implements HiveRemoteDatabase {
         .doc(hiveId)
         .snapshots()
         .map((snapshot) => Hive.fromJson(snapshot.data()!));
+  }
+
+  @override
+  Future<String> postMessage({required String hiveId, required Message message}) async {
+    await FirebaseFirestore.instance.collection('hives').doc(hiveId).update({
+      'conversations': FieldValue.arrayUnion([message.toJson()])
+    });
+    return hiveId;
   }
 }

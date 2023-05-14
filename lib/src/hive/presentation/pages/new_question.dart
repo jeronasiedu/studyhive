@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconly/iconly.dart';
+import 'package:studyhive/shared/ui/custom_bottomsheet.dart';
+import 'package:studyhive/src/hive/domain/entities/message.dart';
+import 'package:studyhive/src/hive/presentation/manager/questions_controller.dart';
 
 import '../../../../shared/theme/theme.dart';
 
-class NewQuestion extends StatelessWidget {
+class NewQuestion extends GetView<QuestionsController> {
   const NewQuestion({Key? key}) : super(key: key);
 
   @override
@@ -41,11 +45,43 @@ class NewQuestion extends StatelessWidget {
             ),
           ),
           ListTile(
-            onTap: () {},
-            title: Text("Short Answer",
+            onTap: () {
+              showCustomBottomSheet(
+                  height: Get.height * 0.3,
+                  child: Column(
+                    children: List.generate(
+                      QuestionType.values.length,
+                      (index) => ListTile(
+                        trailing: Obx(() {
+                          return controller.questionType.value == QuestionType.values[index]
+                              ? Icon(
+                                  IconlyLight.paper,
+                                  color: Get.theme.colorScheme.primary,
+                                )
+                              : const SizedBox.shrink();
+                        }),
+                        onTap: () {
+                          controller.questionType.value = QuestionType.values[index];
+                          Navigator.pop(context);
+                        },
+                        title: Text(
+                          QuestionType.values[index].text,
+                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
+                        ),
+                      ),
+                    ),
+                  ));
+            },
+            title: Obx(() {
+              return Text(
+                controller.questionType.value.text,
                 style: Theme.of(context).textTheme.bodySmall!.copyWith(
                       fontWeight: FontWeight.bold,
-                    )),
+                    ),
+              );
+            }),
             subtitle: Text(
               "Question Type",
               style: Theme.of(context).textTheme.bodySmall,
@@ -79,18 +115,18 @@ class NewQuestion extends StatelessWidget {
               spacing: -5,
               children: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: controller.chooseImage,
                   icon: const Icon(IconlyLight.image),
                   iconSize: 20,
                   splashRadius: 16,
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: controller.chooseVideo,
                   icon: const Icon(IconlyLight.video),
                   iconSize: 20,
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: controller.chooseDocument,
                   icon: const Icon(IconlyLight.document),
                   iconSize: 20,
                 ),

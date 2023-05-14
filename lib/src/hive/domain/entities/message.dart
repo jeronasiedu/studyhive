@@ -15,7 +15,7 @@ class Message with _$Message {
     required String senderId,
 
     /// Text of the message
-    String? content,
+    String? text,
 
     /// Media attached to the message
     @Default([]) List<Media> media,
@@ -45,6 +45,7 @@ enum MessageType {
   announcement,
   poll,
   material,
+  text,
 }
 
 enum QuestionType {
@@ -52,4 +53,19 @@ enum QuestionType {
   trueFalse,
   shortAnswer,
   longAnswer,
+}
+
+extension QuestionTypeX on QuestionType {
+  String get text {
+    switch (this) {
+      case QuestionType.multipleChoice:
+        return "Multiple Choice";
+      case QuestionType.trueFalse:
+        return "True or False";
+      case QuestionType.shortAnswer:
+        return "Short Answer";
+      case QuestionType.longAnswer:
+        return "Long Answer";
+    }
+  }
 }

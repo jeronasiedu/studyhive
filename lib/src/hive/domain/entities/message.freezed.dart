@@ -27,7 +27,7 @@ mixin _$Message {
   String get senderId => throw _privateConstructorUsedError;
 
   /// Text of the message
-  String? get content => throw _privateConstructorUsedError;
+  String? get text => throw _privateConstructorUsedError;
 
   /// Media attached to the message
   List<Media> get media => throw _privateConstructorUsedError;
@@ -60,7 +60,7 @@ abstract class $MessageCopyWith<$Res> {
   $Res call(
       {String id,
       String senderId,
-      String? content,
+      String? text,
       List<Media> media,
       QuestionType? questionType,
       Topic? topic,
@@ -86,7 +86,7 @@ class _$MessageCopyWithImpl<$Res, $Val extends Message>
   $Res call({
     Object? id = null,
     Object? senderId = null,
-    Object? content = freezed,
+    Object? text = freezed,
     Object? media = null,
     Object? questionType = freezed,
     Object? topic = freezed,
@@ -103,9 +103,9 @@ class _$MessageCopyWithImpl<$Res, $Val extends Message>
           ? _value.senderId
           : senderId // ignore: cast_nullable_to_non_nullable
               as String,
-      content: freezed == content
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
+      text: freezed == text
+          ? _value.text
+          : text // ignore: cast_nullable_to_non_nullable
               as String?,
       media: null == media
           ? _value.media
@@ -157,7 +157,7 @@ abstract class _$$_MessageCopyWith<$Res> implements $MessageCopyWith<$Res> {
   $Res call(
       {String id,
       String senderId,
-      String? content,
+      String? text,
       List<Media> media,
       QuestionType? questionType,
       Topic? topic,
@@ -181,7 +181,7 @@ class __$$_MessageCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? senderId = null,
-    Object? content = freezed,
+    Object? text = freezed,
     Object? media = null,
     Object? questionType = freezed,
     Object? topic = freezed,
@@ -198,9 +198,9 @@ class __$$_MessageCopyWithImpl<$Res>
           ? _value.senderId
           : senderId // ignore: cast_nullable_to_non_nullable
               as String,
-      content: freezed == content
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
+      text: freezed == text
+          ? _value.text
+          : text // ignore: cast_nullable_to_non_nullable
               as String?,
       media: null == media
           ? _value.media
@@ -236,7 +236,7 @@ class _$_Message implements _Message {
   const _$_Message(
       {required this.id,
       required this.senderId,
-      this.content,
+      this.text,
       this.media = const [],
       this.questionType,
       this.topic,
@@ -257,7 +257,7 @@ class _$_Message implements _Message {
 
   /// Text of the message
   @override
-  final String? content;
+  final String? text;
 
   /// Media attached to the message
   @override
@@ -287,7 +287,7 @@ class _$_Message implements _Message {
 
   @override
   String toString() {
-    return 'Message(id: $id, senderId: $senderId, content: $content, media: $media, questionType: $questionType, topic: $topic, options: $options, sentAt: $sentAt, type: $type)';
+    return 'Message(id: $id, senderId: $senderId, text: $text, media: $media, questionType: $questionType, topic: $topic, options: $options, sentAt: $sentAt, type: $type)';
   }
 
   @override
@@ -298,7 +298,7 @@ class _$_Message implements _Message {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.senderId, senderId) ||
                 other.senderId == senderId) &&
-            (identical(other.content, content) || other.content == content) &&
+            (identical(other.text, text) || other.text == text) &&
             const DeepCollectionEquality().equals(other.media, media) &&
             (identical(other.questionType, questionType) ||
                 other.questionType == questionType) &&
@@ -314,7 +314,7 @@ class _$_Message implements _Message {
       runtimeType,
       id,
       senderId,
-      content,
+      text,
       const DeepCollectionEquality().hash(media),
       questionType,
       topic,
@@ -340,7 +340,7 @@ abstract class _Message implements Message {
   const factory _Message(
       {required final String id,
       required final String senderId,
-      final String? content,
+      final String? text,
       final List<Media> media,
       final QuestionType? questionType,
       final Topic? topic,
@@ -361,7 +361,7 @@ abstract class _Message implements Message {
   @override
 
   /// Text of the message
-  String? get content;
+  String? get text;
   @override
 
   /// Media attached to the message

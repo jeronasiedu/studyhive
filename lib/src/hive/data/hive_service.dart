@@ -3,6 +3,7 @@ import 'package:studyhive/src/hive/data/remote/data_sources/hive_remote_database
 import 'package:studyhive/src/hive/data/repositories/hive_repository_impl.dart';
 import 'package:studyhive/src/hive/domain/use_cases/details.dart';
 import 'package:studyhive/src/hive/domain/use_cases/list.dart';
+import 'package:studyhive/src/hive/domain/use_cases/post_message.dart';
 
 import '../../../shared/network/network.dart';
 import '../domain/repositories/hive_repository.dart';
@@ -19,6 +20,7 @@ class HiveService extends GetxService {
     ));
     Get.put<ListHives>(ListHives(Get.find()));
     Get.put<HiveDetails>(HiveDetails(Get.find()));
+    Get.put<PostMessage>(PostMessage(Get.find()));
     return this;
   }
 }

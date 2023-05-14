@@ -5,6 +5,7 @@ import 'package:studyhive/shared/network/network.dart';
 import 'package:studyhive/src/hive/data/local/data_sources/hive_local_database.dart';
 import 'package:studyhive/src/hive/data/remote/data_sources/hive_remote_database.dart';
 import 'package:studyhive/src/hive/domain/entities/hive.dart';
+import 'package:studyhive/src/hive/domain/entities/message.dart';
 import 'package:studyhive/src/hive/domain/repositories/hive_repository.dart';
 
 class HiveRepositoryImpl implements HiveRepository {
@@ -106,6 +107,20 @@ class HiveRepositoryImpl implements HiveRepository {
       return Right(result);
     } catch (e) {
       return const Left(Failure("Error getting hive details"));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> postMessage({required String hiveId, required Message message}) async {
+    try {
+      final connected = await networkInfo.hasInternet();
+      if (!connected) {
+        return Left(Failure('no_internet'.tr));
+      }
+      final result = await remoteDatabase.postMessage(hiveId: hiveId, message: message);
+      return Right(result);
+    } catch (e) {
+      return const Left(Failure("Error posting message"));
     }
   }
 }
