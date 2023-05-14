@@ -82,7 +82,10 @@ class CreateHiveController extends GetxController {
       },
       (hiveId) {
         loading.value = false;
-        Get.offNamedUntil('/hive/$hiveId', (route) => route.isFirst, arguments: hive);
+        Get.offNamedUntil('/hive/$hiveId', (route) => route.isFirst, arguments: {
+          "hive": hive,
+          "tab": 2,
+        });
         showSuccessSnackbar(message: "Hive created successfully");
       },
     );

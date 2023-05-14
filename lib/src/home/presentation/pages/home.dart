@@ -90,7 +90,7 @@ class HomePage extends GetView<HomeController> {
                   leading: hive.photoUrl == null ? Text(hive.name.initials) : null,
                   url: hive.photoUrl,
                   onTap: () {
-                    Get.toNamed('/hive/${hive.id}', arguments: hive);
+                    Get.toNamed('/hive/${hive.id}', arguments: {"hive": hive});
                   },
                   subtitle: "This is hive ${index + 1}",
                   title: hive.name,

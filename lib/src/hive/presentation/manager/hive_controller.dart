@@ -15,13 +15,14 @@ import '../pages/members.dart';
 
 class HiveController extends GetxController {
   final String id = Get.parameters['id'] ?? '';
-  final Hive hive = Get.arguments ?? Hive.empty();
+  final Hive hive = Get.arguments['hive'] ?? Hive.empty();
+  final int index = Get.arguments['tab'] ?? 0;
   final hiveDetails = Get.find<HiveDetails>();
   final retrieveProfile = Get.find<RetrieveProfile>();
   Profile _profile = Profile.empty();
   RxBool retrievingProfile = false.obs;
 
-  RxInt activePageIndex = 0.obs;
+  RxInt get activePageIndex => index.obs;
 
   final List<Widget> _pages = [const DiscussionsPage(), const WorkPage(), const MembersPage()];
   final List<Widget> icons = [
